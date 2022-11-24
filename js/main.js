@@ -5,3 +5,14 @@ Collège Jean-Eudes - Xi Yang, Felix Wu
 */
 
 //HEADER
+let playerData = {
+    x: 59,
+    y:34
+}
+localStorage.setItem("player", JSON.stringify(playerData))
+console.log(JSON.parse(localStorage.getItem("player")))
+
+let array = [Treecko,Poochyena]
+let testPokemon = new array[Math.floor(Math.random()*2)]()
+testPokemon.nickname = "ta mere"
+console.log(testPokemon)
