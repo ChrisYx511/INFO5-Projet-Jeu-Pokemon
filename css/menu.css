@@ -1,0 +1,13 @@
+#gameContainerMainMenu {
+    color: rgb(231, 231, 231);
+    font-weight: 700;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+    font-size: x-large;
+}
+
+#gameContainerMainMenu h3 {
+    left: 290px;
+    top: 450px;
+    position: absolute;
+    animation: fadeinandout 1s infinite;
+}

@@ -1,0 +1,73 @@
+@font-face {
+    font-family: Pokemon GB;
+    src: url(../assets/fonts/Pokemon\ GB.ttf);
+}
+
+body{
+    font-family: "Pokemon GB", sans-serif;
+}
+
+.gameContainer {
+    width: 1080px;
+    height: 720px;
+    border: 2px black solid;
+    position: relative;
+    margin: auto;
+    display: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#gameContainerPreStart {
+    display: inherit;
+}
+button {
+    border: 3px solid #736B84;
+    background-color: grey;
+    font-family: "Pokemon GB", sans-serif;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 4px
+}
+
+button:hover {
+    background-color: white;
+    cursor: pointer;
+
+}
+
+#gameStartBtn {
+    position: absolute;
+    left: 460px;
+    top: 300px;
+    height: 100px;
+    width: 200px;
+    font-size: larger
+}
+
+#gameContainerMainMenu {
+    background-image: url(../assets/menu.png);
+}
+
+@keyframes fadeinandout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 100;}
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) }
+    10% { transform: translate(-1px, -2px) ; }
+    20% { transform: translate(-3px, 0px) }
+    30% { transform: translate(3px, 2px) }
+    40% { transform: translate(1px, -1px) }
+    50% { transform: translate(-1px, 2px) ; }
+    60% { transform: translate(-3px, 1px) }
+    70% { transform: translate(3px, 1px) ; }
+    80% { transform: translate(-1px, -1px) }
+    90% { transform: translate(1px, 2px) }
+    100% { transform: translate(1px, -2px) ; }
+  }
