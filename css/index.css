@@ -24,9 +24,11 @@ button {
     border: 3px solid #736B84;
     background-color: grey;
     font-family: "Pokemon GB", sans-serif;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    border-radius: 4px
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 button:hover {

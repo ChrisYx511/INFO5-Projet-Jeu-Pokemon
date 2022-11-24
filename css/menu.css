@@ -11,3 +11,29 @@
     position: absolute;
     animation: fadeinandout 1s infinite;
 }
+
+#gameContainerSecondaryMenu {
+    background-color: #8C94FF;
+    font-size: xx-large;
+}
+#secondaryMenuButtons {
+    top: 40px;
+    position: absolute;
+    width: 100%;
+}
+#secondaryMenuButtons button {
+    width: 100%;
+    text-align: left;
+    font-size: xx-large;
+
+}
+
+#continueButtonSaveInfoLeft {
+    color: red;
+    width: 50%;
+    left: 0;
+    
+}
+#continueButtonSaveInfoRight {
+    color: red
+}
