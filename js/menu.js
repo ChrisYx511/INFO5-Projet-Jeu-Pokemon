@@ -48,3 +48,6 @@ function startSecondaryMenu() {
     gameContainerMainMenu.style.display = "none"
     gameContainerSecondaryMenu.style.display = "inherit"
 }
+
+// NOTE TO SELF: need to discuss with felix how many canvases we're going to have
+
