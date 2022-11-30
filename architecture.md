@@ -5,6 +5,8 @@
 - Load assets as needed, w/ imports at the start
 
 ## Menu, Options
+- DONE
+- Options WIP
 
 ## Save
 - Use localstorage to store a full playerState (pokemon, pc, bag, gym badges, position, etc.)
@@ -33,4 +35,9 @@
 - Play when necessary
 - Load them into the relevant methods
 
-test
+## Canvases, player movement, etc.
+- Each town has an html page, and each section of town + each floor of the gym will be a different canvas background
+- Each area will also have an object containing all the obstacles, collisions, etc. of the area
+- They will be overlayed depending on the value of locationInGame.area and .areaSectionID
+
+- walls could be a class 
