@@ -10,10 +10,10 @@ let trainerName
 let pokemonInventory = []
 let pokemonPC = []
 let itemInventory = []
-let loadedPlayTimeInSeconds = 0
+let loadedPlayTimeInMilliseconds = 0
 let currentStartTime
 let currentSaveTime
-let sessionTimeDiffInSeconds = 0
+let sessionTimeDiffInMilliseconds = 0
 let gymBadges = []
 let locationInGame = {
     mapX: 0,
@@ -43,11 +43,11 @@ function saveGame() {
     locationInGame.mapX = player.x
     locationInGame.mapY = player.y
     localStorage.setItem('locationInGame', JSON.stringify(locationInGame))
-    currentSaveTime = new Date()
-    sessionTimeDiffInSeconds = (currentSaveTime - currentStartTime) / 1000
-    localStorage.setItem('playtime', loadedPlayTimeInSeconds + sessionTimeDiffInSeconds)
-    loadedPlayTimeInSeconds = localStorage.getItem('playtime')
-    currentStartTime = new Date()
+    currentSaveTime = Date.now()
+    sessionTimeDiffInMilliseconds = (currentSaveTime - currentStartTime)
+    localStorage.setItem('playtime', JSON.stringify(loadedPlayTimeInMilliseconds + sessionTimeDiffInMilliseconds))
+    loadedPlayTimeInMilliseconds = JSON.parse(localStorage.getItem('playtime'))
+    currentStartTime = Date.now()
     currentSaveTime = 0
 }
 
@@ -57,18 +57,18 @@ function saveGame() {
  * @returns Returns the stat or "EMPTY SAVE"
  */
 function getBasicStatsFromSave(stat) {
-    if (!localStorage.getItem('trainerName')) {
+    if (localStorage.getItem('trainerName')) {
         switch (stat) {
             case "trainerName":
                 return localStorage.getItem('trainerName')
             case "gymBadges":
-                return localStorage.getItem('gymBadges')
+                return JSON.parse(localStorage.getItem('gymBadges'))
             case "playtime":
-                return localStorage.getItem('playtime')
+                return JSON.parse(localStorage.getItem('playtime'))
         }
         
     } else {
-        return "EMPTY SAVE"
+        return null
     }
 }
 
@@ -78,19 +78,35 @@ function getBasicStatsFromSave(stat) {
  * @returns "SUCCESS" or "EMPTY SAVE"
  */
 function fullGameLoad() {
-    if (!localStorage.getItem('trainerName')) {
+    if (localStorage.getItem('trainerName')) {
         trainerName = localStorage.getItem('trainerName')
         pokemonInventory = JSON.parse(localStorage.getItem('pokemonInventory'))
         pokemonPC = JSON.parse(localStorage.getItem('pokemonPC'))
         gymBadges = JSON.parse(localStorage.getItem('gymBadges'))
         locationInGame = JSON.parse(localStorage.getItem('locationInGame'))
-        loadedPlayTimeInSeconds = JSON.parse(localStorage.getItem('playtime'))
+        loadedPlayTimeInMilliseconds = JSON.parse(localStorage.getItem('playtime'))
 
         player.x = locationInGame.mapX
         player.y = locationInGame.mapY
         return "SUCCESS"
     } else {
-        return "EMPTY SAVE"
+        return null
     }
 }
 
+function clearSave() {
+    localStorage.clear()
+}
+
+function msToHMS(ms) {
+    // 1- Convert to seconds:
+    let seconds = ms / 1000;
+    // 2- Extract hours:
+    const hours = parseInt( seconds / 3600 ); // 3,600 seconds in 1 hour
+    seconds = seconds % 3600; // seconds remaining after extracting hours
+    // 3- Extract minutes:
+    const minutes = parseInt( seconds / 60 ); // 60 seconds in 1 minute
+    // 4- Keep only seconds not extracted to minutes:
+    seconds = Math.floor(seconds % 60);
+    return hours+":"+minutes+":"+seconds;
+}
