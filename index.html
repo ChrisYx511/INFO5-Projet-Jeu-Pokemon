@@ -21,12 +21,12 @@
     </div>
     <div class="gameContainer" id="gameContainerSecondaryMenu">
         <div id="secondaryMenuButtons">
-            <button>Continuer<br><br>
-            <div id="continueButtonSaveInfoLeft">
-            JOUEUR      FALIX &emsp; &emsp;
-            TEMPS    5:00:00<br>
-            BADGES   0
-            </div>
+            <button id="continueButton">Continuer<br><br>
+                <div id="continueButtonSaveInfo">
+                JOUEUR &emsp; &emsp; &emsp;
+                TEMPS &emsp; <br>
+                BADGES &emsp;
+                </div>
             </button>
             <button onclick="startNewGame()">Nouveau Jeu</button>
             <button onclick="openOptions()">Options</button>
@@ -36,9 +36,16 @@
     <div class="gameContainer" id="gameContainerMainCanvas">
         <canvas id="mainCanvas"></canvas>
     </div>
+    <div class="gameContainer" id="gameContainerBirchMoment">
+        
+    </div>
+    <template id="dialogueBoxTemplate">
+        <div class=".dialogueBox">
+
+        </div>
+    </template>
     <!-- WIP -->
     <div class="gameContainer" id="gameContainerBattle"></div>
-    <div class="gameContainer" id="gameContainerDoubleBattle">
     </div>
 </body>
 <script src="./js/assets.js"></script>
