@@ -5,7 +5,8 @@ Collège Jean-Eudes - Xi Yang, Felix Wu
 */
 
 //HEADER
-
+const dialogueBoxTemplate = document.getElementById("dialogueBoxTemplate")
+let musicVolume = 0.5
 let trainerName
 let pokemonInventory = []
 let pokemonPC = []
@@ -109,4 +110,31 @@ function msToHMS(ms) {
     // 4- Keep only seconds not extracted to minutes:
     seconds = Math.floor(seconds % 60);
     return hours+":"+minutes+":"+seconds;
+}
+/**
+ * Returns a div containing a dialogue box to be appended or added to an HTML element
+ * @param {String} dialogueString Dialogue text to be displayed or HTML to be displayed in the dialogue box
+ * @returns String containing the HTML Element defining the dialogue box
+ */
+function returnDialogueBox(dialogueString) {
+    let dialogueClone = dialogueBoxTemplate.content.cloneNode(true)
+    let dialogueCloneDiv = dialogueClone.querySelector("div")
+    let dialogueCloneP = dialogueCloneDiv.querySelector("p")
+    dialogueCloneP.innerHTML = dialogueString
+    return dialogueCloneDiv.outerHTML
+}
+
+function printDialogueBox(containerObjet, dialogueArr) {
+    let numberOfPageFwd = 0
+    const abortFwd = new AbortController
+    containerObjet.innerHTML = returnDialogueBox(dialogueArr[0])
+    document.addEventListener("mousedown", () => {
+        console.log(numberOfPageFwd)
+        console.log(dialogueArr[numberOfPageFwd])
+        numberOfPageFwd++
+        if (numberOfPageFwd == dialogueArr.length - 1) {
+            abortFwd.abort()
+        }
+        birchMomentDialogueContainer.innerHTML = returnDialogueBox(dialogueArr[numberOfPageFwd])
+    }, {signal: abortFwd.signal})
 }

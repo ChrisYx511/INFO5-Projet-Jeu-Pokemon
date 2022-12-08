@@ -6,7 +6,8 @@ const gameContainerSecondaryMenu = document.getElementById("gameContainerSeconda
 const continueButton = document.getElementById("continueButton")
 const secondaryMenuButtons = document.getElementById("secondaryMenuButtons")
 const continueButtonSaveInfo = document.getElementById("continueButtonSaveInfo")
-
+const gameContainerBirchMoment = document.getElementById("gameContainerBirchMoment")
+const birchMomentDialogueContainer = document.querySelector("#gameContainerBirchMoment .dialogueContainer")
 function startGame() {
     gameContainerPreStart.style.display = "none"
     gameContainerOpeningVideo.style.display = "inherit"
@@ -37,9 +38,9 @@ function startGame() {
 function startTitleScreen() {
     gameContainerOpeningVideo.style.display = "none"
     gameContainerMainMenu.style.display = "inherit"
-    music.titlescreen.play()
-    music.titlescreen.loop = true
-    music.titlescreen.volume = 0.5
+    music.titleScreen.play()
+    music.titleScreen.loop = true
+    music.titleScreen.volume = 0.5
     document.addEventListener("keyup", (e) => {
         console.log(e)
         if (e.key == "Enter") {
@@ -67,5 +68,19 @@ function startSecondaryMenu() {
 // NOTE TO SELF: need to discuss with felix how many canvases we're going to have
 
 function startNewGame() {
+    gameContainerSecondaryMenu.style.display = "none"
+    gameContainerBirchMoment.style.display = "inherit"
+    console.log(dialogueText)
+    music.stop(music.titleScreen)
+    music.play(music.introductions)
+    printDialogueBox(birchMomentDialogueContainer, [
+        "(Ceci est une reproduction de Pokémon Emerald avec quelques adaptations au context d'évaluation.)",
+        "(Cliquez pour avancer le texte, bougez avec les flèches et utiliser la touche x pour intéragir avec le monde environnant)",
+        "(Bon jeu! -Félix et Chris)",
+        "Bonjour! Désolé de te faire attendre.",
+        "Bienvenue dans le monde de Pokémon!",
+        "Moi, je suis BIRCH, mais tout le monde m'appelle le professeur de pokémon.",
+        "Et toi, tu es?"
+    ])
     
 }
