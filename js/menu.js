@@ -70,7 +70,6 @@ function startSecondaryMenu() {
 function startNewGame() {
     gameContainerSecondaryMenu.style.display = "none"
     gameContainerBirchMoment.style.display = "inherit"
-    console.log(dialogueText)
     music.stop(music.titleScreen)
     music.play(music.introductions)
     printDialogueBox(birchMomentDialogueContainer, [
