@@ -3,6 +3,10 @@ const gameContainerMainMenu = document.querySelector("#gameContainerMainMenu")
 const gameContainerOpeningVideo = document.getElementById("gameContainerOpeningVideo")
 const openingVideo = document.getElementById("openingVideo")
 const gameContainerSecondaryMenu = document.getElementById("gameContainerSecondaryMenu")
+const continueButton = document.getElementById("continueButton")
+const secondaryMenuButtons = document.getElementById("secondaryMenuButtons")
+const continueButtonSaveInfo = document.getElementById("continueButtonSaveInfo")
+
 function startGame() {
     gameContainerPreStart.style.display = "none"
     gameContainerOpeningVideo.style.display = "inherit"
@@ -42,12 +46,26 @@ function startTitleScreen() {
             startSecondaryMenu()
         } 
     }, {once: true})
+
 }
 
 function startSecondaryMenu() {
     gameContainerMainMenu.style.display = "none"
     gameContainerSecondaryMenu.style.display = "inherit"
+    
+    if (getBasicStatsFromSave("trainerName")) {
+        fullGameLoad()
+        continueButtonSaveInfo.innerHTML = `
+        JOUEUR ${trainerName} &emsp;
+        TEMPS ${msToHMS(loadedPlayTimeInMilliseconds)}<br>
+        BADGES &emsp; ${gymBadges.length}
+        `
+        continueButton.style.display = "inherit"
+    }
 }
 
 // NOTE TO SELF: need to discuss with felix how many canvases we're going to have
 
+function startNewGame() {
+    
+}
