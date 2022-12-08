@@ -79,7 +79,8 @@ function startNewGame() {
         "Bonjour! Désolé de te faire attendre.",
         "Bienvenue dans le monde de Pokémon!",
         "Moi, je suis BIRCH, mais tout le monde m'appelle le professeur de pokémon.",
-        "Et toi, tu es?"
+        "Et toi, tu es?",
     ])
+
     
 }
