@@ -8,6 +8,7 @@ Collège Jean-Eudes - Xi Yang, Felix Wu
 const dialogueBoxTemplate = document.getElementById("dialogueBoxTemplate")
 let musicVolume = 0.5
 let trainerName
+let trainerGender
 let pokemonInventory = []
 let pokemonPC = []
 let itemInventory = []
@@ -127,9 +128,12 @@ function returnDialogueBox(dialogueString) {
 /**
  * Creates and updates innerHTML of a containerObject with the dialogue box
  * @param {HTMLElement} containerObjet An empty div in which the dialogue box will be placed
- * @param {Array} dialogueArr Array containing the dialogue / code in order of appearance
- */
-function printDialogueBox(containerObjet, dialogueArr) {
+ * @param {Array]} dialogueArr Array containing the dialogue / code in order of appearance
+ * @param {Function} exitFunction Optional, defines the function to execute without parameters after dialogue has ended    
+*/
+function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
+    return null
+}) {
     let numberOfPageFwd = 0
     const abortFwd = new AbortController
     containerObjet.innerHTML = returnDialogueBox(dialogueArr[0])
@@ -137,9 +141,13 @@ function printDialogueBox(containerObjet, dialogueArr) {
         console.log(numberOfPageFwd)
         console.log(dialogueArr[numberOfPageFwd])
         numberOfPageFwd++
-        if (numberOfPageFwd == dialogueArr.length - 1) {
+        if (numberOfPageFwd == dialogueArr.length) {
             abortFwd.abort()
+            exitFunction()
         }
-        birchMomentDialogueContainer.innerHTML = returnDialogueBox(dialogueArr[numberOfPageFwd])
+        if (numberOfPageFwd <= dialogueArr.length - 1) {
+            birchMomentDialogueContainer.innerHTML = returnDialogueBox(dialogueArr[numberOfPageFwd])
+
+        }
     }, {signal: abortFwd.signal})
 }

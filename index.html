@@ -39,6 +39,26 @@
     <div class="gameContainer" id="gameContainerBirchMoment">
         <div class="dialogueContainer"></div>
     </div>
+
+    <div class="gameContainer" id="gameContainerCharacterSelection">
+        <div id="characterChoiceSprite">
+            <!-- JS Will fill here w/ image--></div>
+        <div class="dialogueContainer">
+            <div class="dialogueBox">
+                <p>Select your gender:</p>
+                <div class="introductionForms" id="genderChoice">
+                    <button onmouseover='document.querySelector("#characterChoiceSprite").innerHTML = `<img src="./assets/characterSprites/birch.PNG">`' onclick="startNameChoice('boy')">Boy</button>
+                    <button onmouseover='document.querySelector("#characterChoiceSprite").innerHTML = `<img src="./assets/pokemon/blaziken.png">`' onclick="startNameChoice('girl')">Girl</button>
+                </div>
+
+                <div class="introductionForms" id="nameChoice">
+                    <input type="text" name="trainerNameForm" id="trainerNameForm">
+                    <button onclick="finalizeCharacter()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <template id="dialogueBoxTemplate">
         <div class="dialogueBox">
             <p></p>

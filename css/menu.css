@@ -59,3 +59,35 @@
 .dialogueBox p {
     margin: 30px;
 }
+
+#gameContainerCharacterSelection {
+    background-color: black;
+}
+.introductionForms {
+    position: absolute;
+    width: 500px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+
+#characterChoiceSprite {
+    position: absolute;
+    width: 540px;
+    height: 470px;
+    bottom: 250px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+#characterChoiceSprite img {
+    object-fit: contain;
+    width: 540px;
+    height: 420px;
+}
+
+#nameChoice {
+    display: none;
+}

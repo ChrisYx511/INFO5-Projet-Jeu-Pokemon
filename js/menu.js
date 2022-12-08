@@ -8,6 +8,9 @@ const secondaryMenuButtons = document.getElementById("secondaryMenuButtons")
 const continueButtonSaveInfo = document.getElementById("continueButtonSaveInfo")
 const gameContainerBirchMoment = document.getElementById("gameContainerBirchMoment")
 const birchMomentDialogueContainer = document.querySelector("#gameContainerBirchMoment .dialogueContainer")
+const gameContainerCharacterSelection = document.getElementById("gameContainerCharacterSelection")
+const characterSelectionDialogueContainer = document.querySelector("#gameContainerCharacterSelection .dialogueContainer")
+
 function startGame() {
     gameContainerPreStart.style.display = "none"
     gameContainerOpeningVideo.style.display = "inherit"
@@ -79,8 +82,33 @@ function startNewGame() {
         "Bonjour! Désolé de te faire attendre.",
         "Bienvenue dans le monde de Pokémon!",
         "Moi, je suis BIRCH, mais tout le monde m'appelle le professeur de pokémon.",
-        "Et toi, tu es?",
-    ])
+        "Et toi, tu es?"
+    ], startCharacterChoice)
 
-    
+}
+
+function startCharacterChoice() {
+    gameContainerBirchMoment.style.display = "none"
+    gameContainerCharacterSelection.style.display = "inherit"
+}
+
+function startNameChoice(selectedGender) {
+    trainerGender = selectedGender
+    const genderChoice = document.getElementById("genderChoice")
+    genderChoice.style.display = "none"
+    characterSelectionDialogueContainer.querySelector("p").innerHTML = "Enter your name: "
+    characterSelectionDialogueContainer.querySelector("#nameChoice").style.display = "inherit"
+}
+
+function finalizeCharacter() {
+    const trainerNameForm = document.getElementById("trainerNameForm")
+    console.log(trainerNameForm)
+    if (!trainerNameForm.value) {
+        throw "Error: Trainer name undefined"
+    }
+    trainerName = trainerNameForm.value
+    console.log(trainerName)
+    printDialogueBox(characterSelectionDialogueContainer, [
+        `BIRCH: Bien! Bonne aventure, ${trainerName}! `
+    ])
 }
