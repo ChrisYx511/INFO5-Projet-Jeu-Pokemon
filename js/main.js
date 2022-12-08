@@ -111,6 +111,7 @@ function msToHMS(ms) {
     seconds = Math.floor(seconds % 60);
     return hours+":"+minutes+":"+seconds;
 }
+
 /**
  * Returns a div containing a dialogue box to be appended or added to an HTML element
  * @param {String} dialogueString Dialogue text to be displayed or HTML to be displayed in the dialogue box
@@ -123,7 +124,11 @@ function returnDialogueBox(dialogueString) {
     dialogueCloneP.innerHTML = dialogueString
     return dialogueCloneDiv.outerHTML
 }
-
+/**
+ * Creates and updates innerHTML of a containerObject with the dialogue box
+ * @param {HTMLElement} containerObjet An empty div in which the dialogue box will be placed
+ * @param {Array} dialogueArr Array containing the dialogue / code in order of appearance
+ */
 function printDialogueBox(containerObjet, dialogueArr) {
     let numberOfPageFwd = 0
     const abortFwd = new AbortController
