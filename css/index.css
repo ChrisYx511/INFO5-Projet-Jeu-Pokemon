@@ -73,3 +73,83 @@ button:hover {
     90% { transform: translate(1px, 2px) }
     100% { transform: translate(1px, -2px) ; }
   }
+
+#gameContainerBattle {
+    background-image: url(../assets/wildBattleBg.png);
+    display: none;
+}
+
+.battleMyPokemonContainer img {
+    position: absolute;
+    width: 540px;
+    height: 500px;
+    bottom: 100px;
+    object-fit: contain;
+    /* Temporary while we wait for back sprites*/
+    transform: scaleX(-1);
+}
+.battleEnemyPokemonContainer img {
+    position: absolute;
+    width: 540px;
+    height: 320px;
+    right: 0;
+    object-fit: contain;
+}
+
+.battleMyPokemonHUD {
+    position: absolute;
+    right: 100px;
+    background-color: #F9F8D4;
+    bottom: 235px;
+    width: 300px;
+    border: 4px black solid;
+    box-shadow: -10px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.battleEnemyPokemonHUD {
+    position: absolute;
+    left: 100px;
+    background-color: #F9F8D4;
+    top: 35px;
+    width: 300px;
+    border: 4px black solid;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+.battleEnemyPokemonHUD h2 {
+    margin: 10px;
+    margin-left: 10px;
+}
+.battleMyPokemonHUD h2{
+    margin: 10px;
+    margin-left: 30px;
+}
+
+.battleEnemyPokemonHUD .hpBar {
+    top: 40px;
+}
+.hpBar {
+    background-color: aqua;
+    border: 2px black solid;
+    position: absolute;
+    height: 10px;
+    top: 50px;
+    left: 20px;
+    width: 260px;
+    border-radius: 6px
+
+}
+.healthNumber {
+    text-align: right;
+    padding-right: 40px;
+}
+.battleHumanInterfaceElements {
+    position: absolute;
+    z-index: 3;
+    right: 40px;
+    bottom: 60px;
+    margin: auto;
+    text-align: center;
+
+}

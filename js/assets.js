@@ -10,5 +10,6 @@ const music = {
         trackReference.currentTime = 0
     },
     titleScreen: new Audio("../assets/music/03 - Title Screen- Main Theme.ogg"),
-    introductions: new Audio("../assets/music/04 - Introductions.ogg")
+    introductions: new Audio("../assets/music/04 - Introductions.ogg"),
+    wildPokemon: new Audio("../assets/music/09 - Battle! (Wild Pokémon).ogg")
 }

@@ -128,7 +128,7 @@ function returnDialogueBox(dialogueString) {
 /**
  * Creates and updates innerHTML of a containerObject with the dialogue box
  * @param {HTMLElement} containerObjet An empty div in which the dialogue box will be placed
- * @param {Array]} dialogueArr Array containing the dialogue / code in order of appearance
+ * @param {Array} dialogueArr Array containing the dialogue / code in order of appearance
  * @param {Function} exitFunction Optional, defines the function to execute without parameters after dialogue has ended    
 */
 function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
@@ -151,3 +151,4 @@ function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
         }
     }, {signal: abortFwd.signal})
 }
+

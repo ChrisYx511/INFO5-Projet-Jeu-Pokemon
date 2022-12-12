@@ -10,7 +10,7 @@ const gameContainerBirchMoment = document.getElementById("gameContainerBirchMome
 const birchMomentDialogueContainer = document.querySelector("#gameContainerBirchMoment .dialogueContainer")
 const gameContainerCharacterSelection = document.getElementById("gameContainerCharacterSelection")
 const characterSelectionDialogueContainer = document.querySelector("#gameContainerCharacterSelection .dialogueContainer")
-
+const gameContainerBattle = document.getElementById("gameContainerBattle")
 function startGame() {
     gameContainerPreStart.style.display = "none"
     gameContainerOpeningVideo.style.display = "inherit"
@@ -110,5 +110,12 @@ function finalizeCharacter() {
     console.log(trainerName)
     printDialogueBox(characterSelectionDialogueContainer, [
         `BIRCH: Bien! Bonne aventure, ${trainerName}! `
-    ])
+    ], loadFight)
+}
+
+function loadFight() {
+    music.stop(music.introductions)
+    music.play(music.wildPokemon)
+    gameContainerCharacterSelection.style.display = "none"
+    gameContainerBattle.style.display = "inherit"
 }
