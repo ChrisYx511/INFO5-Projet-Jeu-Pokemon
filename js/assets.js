@@ -13,3 +13,11 @@ const music = {
     introductions: new Audio("../assets/music/04 - Introductions.ogg"),
     wildPokemon: new Audio("../assets/music/09 - Battle! (Wild Pokémon).ogg")
 }
+
+const characterSprites = {
+    get mcBoy() {
+        let img = new Image()
+        img.src = "../assets/characterSprites/birch.PNG"
+        return img
+    }
+}

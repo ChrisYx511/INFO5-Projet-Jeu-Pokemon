@@ -26,8 +26,50 @@ let activeWalls = []
 let player = {
     x: 0,
     y: 0,
-    speed: 4,
+    w: 70,
+    h: 85,
+    speed: 5,
+    collisionObject: (wall) => {
+            if (!collision(player, wall)) {
+                return null
+            }
+            if ("ArrowLeft" in keysDown || "ArrowRight" in keysDown) {
+                if (player.x < wall.x + player.w/2){
+                    player.x-=player.speed
+                } else {
+                    player.x+=player.speed
+                }
+            }	
+            if ("ArrowUp" in keysDown || "ArrowDown" in keysDown) {
+                if (player.y< wall.y + wall.h/2){
+                    player.y-=player.speed
+                } else {
+                    player.y+=player.speed
+            }
+        }
+    },
+    handleMovement: (canvasObject = canvas) => {
+        if("ArrowLeft" in keysDown && player.x > 0) {
+            player.x-=player.speed
+        }
+        if("ArrowRight" in keysDown && player.x+player.w < canvasObject.width) {
+            player.x += player.speed
+        }
     
+        if("ArrowUp" in keysDown && player.y > 0) {
+            player.y -= player.speed
+        }
+        if("ArrowDown" in keysDown && player.y + player.h < canvasObject.height) {
+            player.y += player.speed
+        }
+    
+        for (let i = 0; i < activeWalls.length; i++) {
+            player.collisionObject(activeWalls[i])
+        } 
+    },
+    draw: (contextObject = ctx) => {
+        contextObject.drawImage(characterSprites.mcBoy, player.x, player.y, player.w, player.h)
+    }
 }
 
 // PRINCIPAL FUNCTIONS
@@ -159,4 +201,41 @@ function loadArea(areaContainer, targetCanvas) {
     activeWalls = areaContainer.layout
     targetCanvas.style.backgroundImage = `url(${areaContainer.bgPath})`
     locationInGame.area = areaContainer
+}
+
+/**
+ * Collision between objects
+ * @param {Object} objet1 
+ * @param {Object} objet2 
+ * @returns 
+ */
+function collision(objet1, objet2){
+	if (objet1.x + objet1.w > objet2.x &&
+        objet1.x < objet2.x + objet2.w && 
+        objet1.y + objet1.h > objet2.y && 
+        objet1.y < objet2.y + objet2.h) {
+		return true
+	}
+}
+
+function movementHandler() {
+
+    if("ArrowLeft" in keysDown && player.x>0){
+        player.x-=player.speed
+    }
+    if("ArrowRight" in keysDown && player.x+player.w<canvas.width){
+        player.x+=player.speed
+    }
+
+    if("ArrowUp" in keysDown && player.y>0){
+        player.y-=player.speed
+    }
+    if("ArrowDown" in keysDown && player.y+player.h<canvas.height){
+        player.y+=player.speed
+    }
+
+    for (let i = 0; i < activeWalls.length; i++) {
+        collisionWall(player, activeWalls[i])
+    }
+
 }
