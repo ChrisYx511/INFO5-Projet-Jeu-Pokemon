@@ -17,7 +17,7 @@ const music = {
 const characterSprites = {
     get mcBoy() {
         let img = new Image()
-        img.src = "../assets/characterSprites/birch.PNG"
+        img.src = "../assets/characterSprites/mc.jpg"
         return img
     }
 }
