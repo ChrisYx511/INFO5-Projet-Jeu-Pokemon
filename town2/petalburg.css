@@ -1,5 +1,3 @@
 #gameContainerTown2{
-    border: solid 2px violet;
-    background-repeat: no-repeat;
-    background-size: contain;
+    display: inherit
 }
