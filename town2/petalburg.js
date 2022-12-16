@@ -106,6 +106,7 @@ function gameLoop(){
 	ctx.clearRect(0,0,canvas.width, canvas.height)
     petalburg()
 	player.handleMovement()
+    player.draw()
 	requestAnimationFrame(gameLoop)
 }
 gameLoop()
