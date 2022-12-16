@@ -15,6 +15,7 @@ let npc1 ={
 }
 
 
+
 var oldMan = new Image()
 oldMan.src="../assets/characterSprites/oldMan.jpg"
 
@@ -51,10 +52,10 @@ let petalburg1 = {
     ],
     npc: {
         oldMan: {
-            x: 150,
-            y: 600,
+            x: 0,
+            y: 540,
             w: 75,
-            h:  90,
+            h: 90,
         }
 
     }
