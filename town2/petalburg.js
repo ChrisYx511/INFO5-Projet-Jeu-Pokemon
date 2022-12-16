@@ -2,7 +2,7 @@ const canvas=document.getElementById("gameContainerTown2")
 const ctx=canvas.getContext("2d")
 canvas.width = 1080
 canvas.height = 720
-canvas.style.backgroundImage = "url(../assets/towns/mauvilleCity_1.jpg)"
+
 
 let dude={
     x: 500,
@@ -12,49 +12,69 @@ let dude={
     speed:5
 }
 
+let npc1 ={
+    x: 200,
+    y: 500,
+    w: 70,
+    h:  85,
+}
+
 var boy = new Image()
 boy.src = "../assets/characterSprites/birch.PNG"
 
-let wall1={
-    x: 190,
-    y: 100,
-    w: 380,
-    h: 250,
-    color: "red"
+var oldMan = new Image()
+oldMan.src="../assets/characterSprites/oldMan.jpg"
+
+let petalburg1 = {
+    areaName: "Petalburg",
+    areaSectionId: 1,
+    bgPath: "../assets/towns/mauvilleCity_1.jpg",
+    layout: [
+        {
+            x: 190,
+            y: 100,
+            w: 380,
+            h: 250,
+            color: "red"
+        },
+        {
+            x: 570,
+            y: 0,
+            w: 130,
+            h: 320,
+        },
+        {
+            x: 0,
+            y: 270,
+            w: 200,
+            h: 50,
+        },
+        {
+            x: 185,
+            y: 660,
+            w: 450,
+            h: 60,
+        }
+    ],
+    npc: {
+        oldMan: {
+            x: 150,
+            y: 600,
+            w: 75,
+            h:  90,
+        }
+
+    }
+
+    
 }
 
-let wall2={
-    x: 570,
-    y: 0,
-    w: 130,
-    h: 320,
-}
-
-let wall3={
-    x: 0,
-    y: 270,
-    w: 200,
-    h: 50,
-}
-
-let wall4={
-    x: 185,
-    y: 660,
-    w: 450,
-    h: 60,
-}
+loadArea(petalburg1, canvas)
 
 /*dessiner les maps*/
 function petalburg(){
     ctx.drawImage(boy, dude.x, dude.y, dude.w, dude.h)
-
-    ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h)
-
-    ctx.fillRect(wall2.x, wall2.y, wall2.w, wall2.h)
-
-    ctx.fillRect(wall3.x, wall3.y, wall3.w, wall3.h)
-
-    ctx.fillRect(wall4.x, wall4.y, wall4.w, wall4.h)
+    ctx.drawImage(oldMan, petalburg1.npc.oldMan.x, petalburg1.npc.oldMan.y, petalburg1.npc.oldMan.w, petalburg1.npc.oldMan.h)
 }
 
 /*deplacement du joueur*/
@@ -83,11 +103,15 @@ function movement(){
 		dude.y+=dude.speed
 	}
 
+    for (let i = 0; i < activeWalls.length; i++) {
+        collisionWall(dude, activeWalls[i])
+    }
+
     /*collisions*/
-    collisionWall(dude, wall1)
+/*    collisionWall(dude, wall1)
     collisionWall(dude, wall2)
     collisionWall(dude, wall3)
-    collisionWall(dude, wall4)
+    collisionWall(dude, wall4)*/
 }
 
 function collision(objet1,objet2){
@@ -120,7 +144,7 @@ function collisionWall(d, p){
 
 function gameLoop(){
 	ctx.clearRect(0,0,canvas.width, canvas.height)
-	petalburg()
+    petalburg()
 	movement()
 	requestAnimationFrame(gameLoop)
 }

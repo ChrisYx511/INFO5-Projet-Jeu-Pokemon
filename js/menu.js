@@ -110,7 +110,11 @@ function finalizeCharacter() {
     console.log(trainerName)
     printDialogueBox(characterSelectionDialogueContainer, [
         `BIRCH: Bien! Bonne aventure, ${trainerName}! `
-    ], loadFight)
+    ], goToTown1)
+}
+
+function goToTown1() {
+    window.location.href = "town2/petalburg.html"
 }
 
 function loadFight() {
