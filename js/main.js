@@ -20,11 +20,9 @@ let gymBadges = []
 let locationInGame = {
     mapX: 0,
     mapY: 0,
-    area: "Unidentified",
-    // Parce que on split le map, chaque section de map aura un ID qu'on va déterminer
-    areaSectionID: null
+    area: null,
 }
-
+let activeWalls = []
 let player = {
     x: 0,
     y: 0,
@@ -152,3 +150,13 @@ function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
     }, {signal: abortFwd.signal})
 }
 
+/**
+ * Loads an area in the game
+ * @param {Object} areaContainer Objet containing the standard layout and parameters of a given area
+ * @param {HTMLElement} targetCanvas Object containing the HTML Canvas element
+ */
+function loadArea(areaContainer, targetCanvas) {
+    activeWalls = areaContainer.layout
+    targetCanvas.style.backgroundImage = `url(${areaContainer.bgPath})`
+    locationInGame.area = areaContainer
+}
