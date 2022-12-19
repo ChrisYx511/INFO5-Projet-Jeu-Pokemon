@@ -7,15 +7,6 @@ player.x = 500
 player.y = 500
 
 
-let npc1 ={
-    x: 200,
-    y: 500,
-    w: 70,
-    h:  85,
-}
-
-
-
 
 let petalburg1 = {
     areaName: "Petalburg",
@@ -54,48 +45,29 @@ let petalburg1 = {
             y: 540,
             w: 75,
             h: 90,
+            sprite: characterSprites.oldMan
+        },
+        randomBlaziken: {
+            x: 150,
+            y: 540,
+            w: 75,
+            h: 90,
+            sprite: characterSprites.blaziken
         }
+        
 
     },
-    exitZones: [
-        
-    ]
-
     
 }
 
 loadArea(petalburg1, canvas)
 
-/*dessiner les maps*/
-function petalburg(){
-    ctx.drawImage(characterSprites.oldMan, petalburg1.npc.oldMan.x, petalburg1.npc.oldMan.y, petalburg1.npc.oldMan.w, petalburg1.npc.oldMan.h)
-}
-
-
-function collisionWall(d, p){
-    if (collision(d, p)){
-        if ("ArrowLeft" in keysDown || "ArrowRight" in keysDown){
-            if (d.x<p.x+p.w/2){
-                d.x-=d.speed
-            }else{
-                d.x+=d.speed
-            }
-        }	
-            if ("ArrowUp" in keysDown || "ArrowDown" in keysDown){
-            if (d.y<p.y+p.h/2){
-                d.y-=d.speed
-            }else{
-                d.y+=d.speed
-            }
-    }
-}
-}
 
 function gameLoop(){
 	ctx.clearRect(0,0,canvas.width, canvas.height)
-    petalburg()
 	player.handleMovement()
     player.draw()
+    drawAreaObjects()
 	requestAnimationFrame(gameLoop)
 }
 gameLoop()

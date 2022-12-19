@@ -25,17 +25,15 @@ let locationInGame = {
 
 
 // Movement and player
-let activeWalls = []
-let activeNPCs = {}
+let activeArea = {}
 /*deplacement du joueur*/
 let keysDown = {}
 let keysBlocked = false
 document.addEventListener("keydown", (e) => {
-    if (!keysBlocked) {
-        keysDown[e.key]=true
-        console.log(keysDown)
-        keysBlocked = true
-    }
+    keysDown = {}
+    keysDown[e.key]=true
+    console.log(keysDown)
+    keysBlocked = true
 
 })
 document.addEventListener("keyup", (e) => {
@@ -83,9 +81,9 @@ let player = {
         if("ArrowDown" in keysDown && player.y + player.h < canvasObject.height) {
             player.y += player.speed
         }
-    
-        for (let i = 0; i < activeWalls.length; i++) {
-            player.collisionObject(activeWalls[i])
+        // Collide with invisible objects
+        for (let i = 0; i < activeArea.layout.length; i++) {
+            player.collisionObject(activeArea.layout[i])
         } 
     },
     draw: (contextObject = ctx) => {
@@ -219,7 +217,7 @@ function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
  * @param {HTMLElement} targetCanvas Object containing the HTML Canvas element
  */
 function loadArea(areaContainer, targetCanvas) {
-    activeWalls = areaContainer.layout
+    activeArea = areaContainer
     targetCanvas.style.backgroundImage = `url(${areaContainer.bgPath})`
     locationInGame.area = areaContainer
 }
@@ -259,4 +257,12 @@ function movementHandler() {
         collisionWall(player, activeWalls[i])
     }
 
+}
+
+function drawAreaObjects(contextObject = ctx) {
+    for (let i = 0; i < Object.keys(activeArea.npc).length; i++) {
+        let selectedNpc = activeArea.npc[Object.keys(activeArea.npc)[i]]
+        player.collisionObject(selectedNpc)
+        contextObject.drawImage(selectedNpc.sprite, selectedNpc.x, selectedNpc.y, selectedNpc.w, selectedNpc.h)
+    }
 }
