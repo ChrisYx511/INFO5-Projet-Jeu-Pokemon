@@ -22,13 +22,34 @@ let locationInGame = {
     mapY: 0,
     area: null,
 }
+
+
+// Movement and player
 let activeWalls = []
+let activeNPCs = {}
+/*deplacement du joueur*/
+let keysDown = {}
+let keysBlocked = false
+document.addEventListener("keydown", (e) => {
+    if (!keysBlocked) {
+        keysDown[e.key]=true
+        console.log(keysDown)
+        keysBlocked = true
+    }
+
+})
+document.addEventListener("keyup", (e) => {
+	keysBlocked = false
+    delete keysDown[e.key]
+})
+
+
 let player = {
     x: 0,
     y: 0,
     w: 70,
     h: 85,
-    speed: 5,
+    speed: 6,
     collisionObject: (wall) => {
             if (!collision(player, wall)) {
                 return null
@@ -41,7 +62,7 @@ let player = {
                 }
             }	
             if ("ArrowUp" in keysDown || "ArrowDown" in keysDown) {
-                if (player.y< wall.y + wall.h/2){
+                if (player.y < wall.y + wall.h/2){
                     player.y-=player.speed
                 } else {
                     player.y+=player.speed

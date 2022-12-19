@@ -16,8 +16,6 @@ let npc1 ={
 
 
 
-var oldMan = new Image()
-oldMan.src="../assets/characterSprites/oldMan.jpg"
 
 let petalburg1 = {
     areaName: "Petalburg",
@@ -58,7 +56,10 @@ let petalburg1 = {
             h: 90,
         }
 
-    }
+    },
+    exitZones: [
+        
+    ]
 
     
 }
@@ -67,20 +68,8 @@ loadArea(petalburg1, canvas)
 
 /*dessiner les maps*/
 function petalburg(){
-    ctx.drawImage(oldMan, petalburg1.npc.oldMan.x, petalburg1.npc.oldMan.y, petalburg1.npc.oldMan.w, petalburg1.npc.oldMan.h)
+    ctx.drawImage(characterSprites.oldMan, petalburg1.npc.oldMan.x, petalburg1.npc.oldMan.y, petalburg1.npc.oldMan.w, petalburg1.npc.oldMan.h)
 }
-
-/*deplacement du joueur*/
-let keysDown={}
-document.addEventListener("keydown", (e) => {
-    keysDown[e.key]=true
-    console.log(keysDown)
-
-})
-document.addEventListener("keyup", (e) => {
-	delete keysDown[e.key]
-})
-
 
 
 function collisionWall(d, p){

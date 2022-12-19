@@ -15,9 +15,17 @@ const music = {
 }
 
 const characterSprites = {
-    get mcBoy() {
-        let img = new Image()
-        img.src = "../assets/characterSprites/mc.jpg"
-        return img
-    }
+    mcBoy: getImage("../assets/characterSprites/mc.jpg"),
+    oldMan: getImage("../assets/characterSprites/oldMan.jpg"),
+}
+
+/**
+ * Return an HTML image from a src string
+ * @param {String} source 
+ * @returns HTMLImageObject
+ */
+function getImage(source) {
+    let img = new Image()
+    img.src = source
+    return img
 }
