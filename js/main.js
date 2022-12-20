@@ -230,7 +230,7 @@ function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
  * @param {Object} areaContainer Objet containing the standard layout and parameters of a given area
  * @param {HTMLElement} targetCanvas Object containing the HTML Canvas element
  */
-function loadArea(areaContainer, targetCanvas) {
+function loadArea(areaContainer, targetCanvas = canvas) {
     activeArea = areaContainer
     targetCanvas.style.backgroundImage = `url(${areaContainer.bgPath})`
     locationInGame.area = areaContainer

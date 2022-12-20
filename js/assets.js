@@ -18,6 +18,7 @@ const characterSprites = {
     mcBoy: getImage("../assets/characterSprites/mc.jpg"),
     oldMan: getImage("../assets/characterSprites/oldMan.jpg"),
     blaziken: getImage("../assets/pokemon/blaziken.png"),
+    shortsBoy: getImage("../assets/characterSprites/shortsGuy.png")
 }
 
 /**
