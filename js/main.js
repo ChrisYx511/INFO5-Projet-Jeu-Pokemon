@@ -22,7 +22,7 @@ let locationInGame = {
     mapY: 0,
     area: null,
 }
-
+let renderPause = false
 
 // Movement and player
 let activeArea = {}
@@ -30,14 +30,14 @@ let activeArea = {}
 let keysDown = {}
 let keysBlocked = false
 document.addEventListener("keydown", (e) => {
-    keysDown = {}
-    keysDown[e.key]=true
-    console.log(keysDown)
-    keysBlocked = true
+    if (!keysBlocked) {
+        keysDown = {}
+        keysDown[e.key]=true
+        console.log(keysDown)
+    }
 
 })
 document.addEventListener("keyup", (e) => {
-	keysBlocked = false
     delete keysDown[e.key]
 })
 
@@ -65,7 +65,7 @@ let player = {
                 } else {
                     player.y+=player.speed
             }
-        }
+        }   
     },
     handleMovement: (canvasObject = canvas) => {
         if("ArrowLeft" in keysDown && player.x > 0) {
@@ -83,7 +83,20 @@ let player = {
         }
         // Collide with invisible objects
         for (let i = 0; i < activeArea.layout.length; i++) {
+            if (!activeArea.layout[i]) {
+                return null
+            }
+            if ("oncontact" in activeArea.layout[i] && collision(player,activeArea.layout[i]) && !activeArea.layout[i].hasMadeContact) {
+                activeArea.layout[i].hasMadeContact = true
+                activeArea.layout[i].oncontact()
+            }
             player.collisionObject(activeArea.layout[i])
+            if (!collision(player,activeArea.layout[i])) {
+                if (!activeArea.layout[i]) {
+                    return null
+                }
+                activeArea.layout[i].hasMadeContact = false
+            }
         } 
     },
     draw: (contextObject = ctx) => {
@@ -191,7 +204,8 @@ function returnDialogueBox(dialogueString) {
  * @param {Function} exitFunction Optional, defines the function to execute without parameters after dialogue has ended    
 */
 function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
-    return null
+    containerObjet.innerHTML = ""
+    keysBlocked = false
 }) {
     let numberOfPageFwd = 0
     const abortFwd = new AbortController
@@ -205,7 +219,7 @@ function printDialogueBox(containerObjet, dialogueArr, exitFunction = () => {
             exitFunction()
         }
         if (numberOfPageFwd <= dialogueArr.length - 1) {
-            birchMomentDialogueContainer.innerHTML = returnDialogueBox(dialogueArr[numberOfPageFwd])
+            containerObjet.innerHTML = returnDialogueBox(dialogueArr[numberOfPageFwd])
 
         }
     }, {signal: abortFwd.signal})
@@ -228,41 +242,33 @@ function loadArea(areaContainer, targetCanvas) {
  * @param {Object} objet2 
  * @returns 
  */
-function collision(objet1, objet2){
-	if (objet1.x + objet1.w > objet2.x &&
-        objet1.x < objet2.x + objet2.w && 
-        objet1.y + objet1.h > objet2.y && 
-        objet1.y < objet2.y + objet2.h) {
+function collision(objet1 = null, objet2 = null){
+    if (!objet1 || !objet2) {
+        return null
+    }
+	if (objet1.x + objet1.w >= objet2.x &&
+        objet1.x <= objet2.x + objet2.w && 
+        objet1.y + objet1.h >= objet2.y && 
+        objet1.y <= objet2.y + objet2.h) {
 		return true
 	}
 }
 
-function movementHandler() {
-
-    if("ArrowLeft" in keysDown && player.x>0){
-        player.x-=player.speed
-    }
-    if("ArrowRight" in keysDown && player.x+player.w<canvas.width){
-        player.x+=player.speed
-    }
-
-    if("ArrowUp" in keysDown && player.y>0){
-        player.y-=player.speed
-    }
-    if("ArrowDown" in keysDown && player.y+player.h<canvas.height){
-        player.y+=player.speed
-    }
-
-    for (let i = 0; i < activeWalls.length; i++) {
-        collisionWall(player, activeWalls[i])
-    }
-
-}
-
+/**
+ * Draws non-player items and characters, handles collisions
+ * @param {*} contextObject 
+ */
 function drawAreaObjects(contextObject = ctx) {
     for (let i = 0; i < Object.keys(activeArea.npc).length; i++) {
         let selectedNpc = activeArea.npc[Object.keys(activeArea.npc)[i]]
+        if ("oncontact" in selectedNpc && collision(player,selectedNpc) && !selectedNpc.hasMadeContact) {
+            selectedNpc.hasMadeContact = true
+            selectedNpc.oncontact()
+        }
         player.collisionObject(selectedNpc)
         contextObject.drawImage(selectedNpc.sprite, selectedNpc.x, selectedNpc.y, selectedNpc.w, selectedNpc.h)
+        if (!collision(player,selectedNpc)) {
+            selectedNpc.hasMadeContact = false
+        }
     }
-}
+}   

@@ -41,3 +41,9 @@
 - They will be overlayed depending on the value of locationInGame.area and .areaSectionID
 
 - walls could be a class 
+
+## Character dialogue
+- The goal is to be able to press X on a character to interact with them
+- On contact, an eventListener should be added 
+- When contact no longer exists, the eventListener should be destroyed
+- On keypress, a single dialogue instance should be displayed

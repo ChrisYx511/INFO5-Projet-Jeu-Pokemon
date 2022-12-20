@@ -41,24 +41,6 @@
 
 }
 
-.dialogueBox {
-    width: 1050px;
-    height: 180px;
-    position: absolute;
-    background-color: white;
-    color: black;
-    left: 0;
-    right: 0;
-    margin: auto;
-    bottom: 10px;
-    z-index: 2;
-    border-radius: 20px;
-    font-size: 16pt;
-    border: 10px #00C8B8 solid;
-}
-.dialogueBox p {
-    margin: 30px;
-}
 
 #gameContainerCharacterSelection {
     background-color: black;
