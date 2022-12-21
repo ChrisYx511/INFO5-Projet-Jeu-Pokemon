@@ -292,7 +292,14 @@ const mauvilleGym1 = {
                 player.x = 419
                 player.y = 519
             }
+        },
+        {
+            x: 320,
+            y: 466,
+            w: 135,
+            h: 124
         }
+
     ],
     npc: {}
 }
