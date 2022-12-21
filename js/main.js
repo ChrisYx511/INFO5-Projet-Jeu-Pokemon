@@ -22,7 +22,6 @@ let locationInGame = {
     mapY: 0,
     area: null,
 }
-let renderPause = false
 
 // Movement and player
 let activeArea = {}
