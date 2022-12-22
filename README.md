@@ -6,6 +6,7 @@ Chris Yang, Felix Wu - Concentration Informatique Secondaire 5
 - Town 2: Felix Wu
 - Menu et autre: Équitablement réparti.
 
-## À Noter: Utiliser entrypoint.bat est mieux qu'ouvrir le fichier html.
+## À Noter
+- Utiliser live-server dans Visual Studio Code permet l'utilisation des procédés de sauvegarde dans le jeu.
 
 ## Améliorations pour le futur: Étendre le jeu, faire le combat, etc.
