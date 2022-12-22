@@ -1,5 +1,5 @@
 // INUTILISÉ - JUSTE POUR RÉFÉRENCE
-
+/*
 //Grovyle and Sceptile
 const gigaDrain = {
     name: "Giga Drain",
@@ -199,3 +199,4 @@ const airSlash = {
     acc: 95,
     type: "flying"
 }
+*/
