@@ -46,7 +46,7 @@ let player = {
     y: 0,
     w: 70,
     h: 85,
-    speed: 6,
+    speed: 10,
     health: 10,
     collisionObject: (wall) => {
             if (!collision(player, wall)) {

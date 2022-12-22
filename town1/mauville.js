@@ -565,7 +565,7 @@ const mauvilleGym2 = {
 
                 }
             }
-
+            
         },
         eonTicket: {
             x: 310,
