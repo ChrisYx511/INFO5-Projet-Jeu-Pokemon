@@ -13,7 +13,7 @@ const music = {
     introductions: new Audio("../assets/music/04 - Introductions.ogg"),
     wildPokemon: new Audio("../assets/music/09 - Battle! (Wild Pokémon).ogg"),
     gymBattle: new Audio("../assets/music/50 - Battle! (Gym Leader).ogg"),
-    mauville: new Audio("../assets/music/27 - Rustboro City.ogg"),
+    mauville: new Audio("../assets/music/20 - Petalburg City.ogg"),
     petalburg: new Audio("../assets/music/27 - Rustboro City.ogg"),
     gymVictory: new Audio("../assets/music/51 - Victory! (Gym Leader).ogg")
 }
