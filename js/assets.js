@@ -23,7 +23,7 @@ const characterSprites = {
     oldMan: getImage("../assets/characterSprites/oldMan.jpg"),
     blaziken: getImage("../assets/pokemon/blaziken.png"),
     shortsBoy: getImage("../assets/characterSprites/shortsGuy.png"),
-    birch: getImage("../assets/characterSprites/birch.PNG")
+    birch: getImage("../assets/characterSprites/birch.PNG"),
     trainer: getImage("../assets/characterSprites/trainer.PNG"),
     farmer: getImage("../assets/characterSprites/farmer.PNG"),
     nurse: getImage("../assets/characterSprites/nurse.PNG"),
