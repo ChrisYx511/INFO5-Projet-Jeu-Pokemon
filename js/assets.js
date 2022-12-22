@@ -22,6 +22,12 @@ const characterSprites = {
     oldMan: getImage("../assets/characterSprites/oldMan.jpg"),
     blaziken: getImage("../assets/pokemon/blaziken.png"),
     shortsBoy: getImage("../assets/characterSprites/shortsGuy.png"),
+    trainer: getImage("../assets/characterSprites/trainer.PNG"),
+    farmer: getImage("../assets/characterSprites/farmer.PNG"),
+    nurse: getImage("../assets/characterSprites/nurse.PNG"),
+    scientific: getImage("../assets/characterSprites/scientific.PNG"),
+    baldGuy: getImage("../assets/characterSprites/baldGuy.PNG"),
+    bigDude: getImage("../assets/characterSprites/bigDude.PNG"),
     
 }
 
