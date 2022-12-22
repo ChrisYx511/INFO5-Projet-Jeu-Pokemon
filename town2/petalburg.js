@@ -78,6 +78,7 @@ const woods1 = {
             w: 30,
             h: 30,
             oncontact: () => {
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 printDialogueBox(gameContainerTown2DialogueContainer, [
                     "Bienvenue dans la foret de Petalburg!",
@@ -95,6 +96,7 @@ const woods1 = {
             h: 90,
             sprite: characterSprites.oldMan,
             oncontact: () => {
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 printDialogueBox(gameContainerTown2DialogueContainer, [
                     "Mais que vois-la je!",
@@ -105,7 +107,18 @@ const woods1 = {
                     "...du coup je l'espère."
                 ])
             }
-        }
+        },
+        zigzagoon1:{
+            x: 0,
+            y: 550,
+            w: 80,
+            h: 60,
+            speed: 3,
+            sprite: pokemonSprites.zigzagoon,
+            oncontact: (self) => {
+                ouch()
+            } 
+        },
     },
 }
 
@@ -191,10 +204,11 @@ const woods2 = {
             fermier:{
                 x: 260,
                 y: 110,
-                w: 70,
-                h: 90,
-                sprite: characterSprites.oldMan,
+                w: 110,
+                h: 100,
+                sprite: characterSprites.farmer,
                 oncontact: () => {
+                        sfx.play(sfx.boop)
                         keysBlocked = true
                         printDialogueBox(gameContainerTown2DialogueContainer, [
                             "Tu veux aller à Petalburg?",
@@ -300,6 +314,7 @@ const woods4 = {
             w: 30,
             h: 30,
             oncontact: () => {
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 printDialogueBox(gameContainerTown2DialogueContainer, [
                     "Vous y êtes presque!",
@@ -335,12 +350,13 @@ const woods4 = {
     ],
     npc:{
         trainer:{
-            x: 915,
+            x: 885,
             y: 230,
-            w: 70,
+            w: 110,
             h: 90,
-            sprite: characterSprites.oldMan,
+            sprite: characterSprites.trainer,
             oncontact: () => {
+                    sfx.play(sfx.boop)
                     keysBlocked = true
                     printDialogueBox(gameContainerTown2DialogueContainer, [
                         "Salut!",
@@ -354,16 +370,35 @@ const woods4 = {
     }
 }
 
+function playMusic(){
+        music.play(music.petalburg)
+}
+
 const petalburg1 = {
     areaName: "Petalburg",
     areaSectionId: 4,
     bgPath: "../assets/towns/petalburgCity_1.jpg",
     layout: [
+        // pokemon center
         {
-            x: 0,
-            y: 0,
+            x: 210,
+            y: 310,
             w: 290,
-            h: 10,
+            h: 280,
+        },
+        // shop
+        {
+            x: 620,
+            y: 50,
+            w: 290,
+            h: 230,
+        },
+        // colonne d'arbres
+        {
+            x: 930,
+            y: 260,
+            w: 150,
+            h: 230,
         },
         // aller vers Petalburg2
         {
@@ -377,9 +412,25 @@ const petalburg1 = {
                 player.y = 275
                 } 
         }
-            
     ],
-    npc:{}
+    npc:{
+        nurse:{
+            x: 265,
+            y: 530,
+            w: 120,
+            h: 85,
+            sprite: characterSprites.nurse,
+            oncontact: () => {
+                    sfx.play(sfx.boop)
+                    keysBlocked = true
+                    printDialogueBox(gameContainerTown2DialogueContainer, [
+                        "Bonjour!",
+                        "Malheureusement le pokemon center est ferme temporairement dans cette ville du a des renovations.",
+                        "Je suis vraiment desole de ne pas pouvoir vous aider avec des soins."
+                    ])
+            }
+        }
+    }
 }
 
 const petalburg2 = {
@@ -392,7 +443,7 @@ const petalburg2 = {
             x: 222,
             y: 160,
             w: 280,
-            h: 220,
+            h: 250,
         },
         // colone d'arbres
         {
@@ -445,7 +496,22 @@ const petalburg2 = {
                 } 
         }
     ],
-    npc:{}
+    npc:{
+        scientific:{
+            x: 380,
+            y: 400,
+            w: 120,
+            h: 90,
+            sprite: characterSprites.scientific,
+            oncontact: () => {
+                    sfx.play(sfx.boop)
+                    keysBlocked = true
+                    printDialogueBox(gameContainerTown2DialogueContainer, [
+                        "J'en ai marre de la vie.",
+                    ])
+            }
+        }
+    }
 }
 
 const petalburg3 = {
@@ -517,12 +583,54 @@ const petalburg4 = {
     areaSectionId: 4,
     bgPath: "../assets/towns/petalburgCity_3.jpg",
     layout: [
+        //gym
+        {
+            x: 670,
+            y: 230,
+            w: 290,
+            h: 150,
+        },
+        // buissons a droite
+        {
+            x: 1000,
+            y: 380,
+            w: 50,
+            h: 110,
+        },
+        // buissons du milieu
+        {
+            x: 500,
+            y: 430,
+            w: 150,
+            h: 50,
+        },
+        {
+            x: 570,
+            y: 50,
+            w: 90,
+            h: 330,
+        },
+        // maison
+        {
+            x: 270,
+            y: 100,
+            w: 290,
+            h: 140,
+        },
+        // colones d'arbres a droite
+        {
+            x: 100,
+            y: 170,
+            w: 80,
+            h: 230,
+        },
         {
             x: 0,
-            y: 0,
-            w: 290,
-            h: 10,
+            y: 330,
+            w: 100,
+            h: 230,
         },
+
         // retourner vers Petalburg2
         {
             x: 770,
@@ -535,25 +643,43 @@ const petalburg4 = {
                 player.y = 80
                 } 
         },
-            
     ],
     npc:{}
 }
 
 loadArea(woods1, canvas)
-player.x = 500
-player.y = 500
+player.x = 510
+player.y = 630
+playMusic()
 
 //function finiTot()
 
-/*function ouch(){
+var barreDeVie = document.getElementById("life")
+var pointsDeVie = 208
+
+function ouch(){
+    player.x = 420
+    player.y = 520
+
+    var viesPerdues = 52
+    barreDeVie.style.width = pointsDeVie + "px"
+    
+    pointsDeVie -= viesPerdues
+    
     keysBlocked = true
     printDialogueBox(gameContainerTown2DialogueContainer, [
         "Eille!! Ca fait mal!!!",
-        "Ma vie...",
-        'Vous avez perdu 2 points de vie'
+        'Vous avez perdu quelques points de vie'
     ])
-}*/
+    if (pointsDeVie == -52 || pointsDeVie < -52){
+        player.x = 510
+        player.y = 630
+        pointsDeVie += 208
+        printDialogueBox(gameContainerTown2DialogueContainer, [
+            "Vous vous etes reveillez a l'entree de la foret..."
+        ])
+    }
+}
 
 function gameLoop(){
         ctx.clearRect(0,0,canvas.width, canvas.height)
