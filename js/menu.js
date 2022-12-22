@@ -11,6 +11,11 @@ const birchMomentDialogueContainer = document.querySelector("#gameContainerBirch
 const gameContainerCharacterSelection = document.getElementById("gameContainerCharacterSelection")
 const characterSelectionDialogueContainer = document.querySelector("#gameContainerCharacterSelection .dialogueContainer")
 const gameContainerBattle = document.getElementById("gameContainerBattle")
+const gameContainerOptionsMenu = document.getElementById("gameContainerOptionsMenu")
+const musicSlider = document.getElementById("musicSlider")
+const sfxSlider = document.getElementById("sfxSlider")
+const birchSprite = document.getElementById("birchSprite")
+
 function startGame() {
     gameContainerPreStart.style.display = "none"
     gameContainerOpeningVideo.style.display = "inherit"
@@ -56,7 +61,7 @@ function startTitleScreen() {
 function startSecondaryMenu() {
     gameContainerMainMenu.style.display = "none"
     gameContainerSecondaryMenu.style.display = "inherit"
-    
+    birchSprite.appendChild(characterSprites.birch)
     if (getBasicStatsFromSave("trainerName")) {
         fullGameLoad()
         continueButtonSaveInfo.innerHTML = `
@@ -75,9 +80,12 @@ function startNewGame() {
     gameContainerBirchMoment.style.display = "inherit"
     music.stop(music.titleScreen)
     music.play(music.introductions)
+    currentStartTime = Date.now()
+
     printDialogueBox(birchMomentDialogueContainer, [
-        "(Ceci est une reproduction de Pokémon Emerald avec quelques adaptations au context d'évaluation.)",
-        "(Cliquez pour avancer le texte, bougez avec les flèches et utiliser la touche x pour intéragir avec le monde environnant)",
+        "(Cliquez pour avancer le texte, bougez et intéragir avec le monde environnant à l'aide des flèches.)",
+        "(Ceci est une reproduction de 2 villes dans Pokémon Emerald avec plusieurs adaptations au context d'évaluation.)",
+        "(Explorez les 2 zones et surmontez le défi dans chacun!)",
         "(Bon jeu! -Félix et Chris)",
         "Bonjour! Désolé de te faire attendre.",
         "Bienvenue dans le monde de Pokémon!",
@@ -96,7 +104,7 @@ function startNameChoice(selectedGender) {
     trainerGender = selectedGender
     const genderChoice = document.getElementById("genderChoice")
     genderChoice.style.display = "none"
-    characterSelectionDialogueContainer.querySelector("p").innerHTML = "Enter your name: "
+    characterSelectionDialogueContainer.querySelector("p").innerHTML = "Entre ton nom: "
     characterSelectionDialogueContainer.querySelector("#nameChoice").style.display = "inherit"
 }
 
@@ -114,12 +122,32 @@ function finalizeCharacter() {
 }
 
 function goToTown1() {
-    window.location.href = "town2/petalburg.html"
+    saveGame()
+    window.location.href = "town1/mauville.html"
 }
 
-function loadFight() {
-    music.stop(music.introductions)
-    music.play(music.wildPokemon)
-    gameContainerCharacterSelection.style.display = "none"
-    gameContainerBattle.style.display = "inherit"
+function continueGame() {
+    saveGame()
+    if (locationInGame.area.areaName == "Mauville" || locationInGame.area.areaName == "Mauville Gym") {
+        location.href = "town1/mauville.html"
+    }
+    if (locationInGame.area.areaName == "Petalburg" || locationInGame.area.areaName == "Petalburg Gym" || locationInGame.area.areaName == "Woods") {
+        location.href = "town1/petalburg.html"
+    }
+    currentStartTime = Date.now()
 }
+
+function openOptions() {
+    gameContainerSecondaryMenu.style.display = "none"
+    gameContainerOptionsMenu.style.display = "inherit"
+    musicSlider.value = String(100*musicVolume)
+    sfxSlider.value = String(100*sfxVolume)
+}
+
+function backToSecondaryMenu() {
+    musicVolume = Number(musicSlider.value)/100
+    sfxVolume = Number(sfxSlider.value)/100
+    gameContainerSecondaryMenu.style.display = "inherit"
+    gameContainerOptionsMenu.style.display = "none"
+}
+

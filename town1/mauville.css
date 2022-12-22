@@ -35,3 +35,19 @@
     margin: 10px;
     margin-left: 30px;
 }
+
+#gameContainerGameOver {
+    background-color: #8C94FF;
+    font-size: xx-large;
+}
+#gameOverButtonContainer {
+    top: 40px;
+    position: absolute;
+    width: 100%;
+}
+#gameOverButtonContainer button {
+    width: 100%;
+    text-align: left;
+    font-size: xx-large;
+
+}
