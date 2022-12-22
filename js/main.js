@@ -22,7 +22,7 @@ let locationInGame = {
     mapY: 0,
     area: null,
 }
-
+let paused = false
 // Movement and player
 let activeArea = {}
 /*deplacement du joueur*/
@@ -32,7 +32,6 @@ document.addEventListener("keydown", (e) => {
     if (!keysBlocked) {
         keysDown = {}
         keysDown[e.key]=true
-        console.log(keysDown)
     }
 
 })
@@ -47,6 +46,7 @@ let player = {
     w: 70,
     h: 85,
     speed: 6,
+    health: 10,
     collisionObject: (wall) => {
             if (!collision(player, wall)) {
                 return null
@@ -66,7 +66,7 @@ let player = {
             }
         }   
     },
-    handleMovement: (canvasObject = canvas) => {
+    handleMovement: (canvasObject = canvas, contextObject = ctx) => {
         if("ArrowLeft" in keysDown && player.x > 0) {
             player.x-=player.speed
         }
@@ -85,9 +85,18 @@ let player = {
             if (!activeArea.layout[i]) {
                 return null
             }
+            if (activeArea.layout[i] && activeArea.layout[i].hide) {
+                continue;
+            }
             if ("oncontact" in activeArea.layout[i] && collision(player,activeArea.layout[i]) && !activeArea.layout[i].hasMadeContact) {
                 activeArea.layout[i].hasMadeContact = true
-                activeArea.layout[i].oncontact()
+                activeArea.layout[i].oncontact(activeArea.layout[i])
+            }
+            if (activeArea.layout[i] && activeArea.layout[i].sprite) {
+                contextObject.drawImage(activeArea.layout[i].sprite, activeArea.layout[i].x, activeArea.layout[i].y, activeArea.layout[i].w, activeArea.layout[i].h)
+            }
+            if (activeArea.layout[i] && activeArea.layout[i].nocollide == true) {
+                continue;
             }
             player.collisionObject(activeArea.layout[i])
             if (!collision(player,activeArea.layout[i])) {
@@ -260,12 +269,20 @@ function collision(objet1 = null, objet2 = null){
 function drawAreaObjects(contextObject = ctx) {
     for (let i = 0; i < Object.keys(activeArea.npc).length; i++) {
         let selectedNpc = activeArea.npc[Object.keys(activeArea.npc)[i]]
+        if (selectedNpc.hide) {
+            continue;
+        }
         if ("oncontact" in selectedNpc && collision(player,selectedNpc) && !selectedNpc.hasMadeContact) {
             selectedNpc.hasMadeContact = true
-            selectedNpc.oncontact()
+            selectedNpc.oncontact(selectedNpc)
+        }
+        if ("loop" in selectedNpc) {
+            selectedNpc.loop(selectedNpc)
         }
         player.collisionObject(selectedNpc)
-        contextObject.drawImage(selectedNpc.sprite, selectedNpc.x, selectedNpc.y, selectedNpc.w, selectedNpc.h)
+        if ("sprite" in selectedNpc) {
+            contextObject.drawImage(selectedNpc.sprite, selectedNpc.x, selectedNpc.y, selectedNpc.w, selectedNpc.h)
+        }
         if (!collision(player,selectedNpc)) {
             selectedNpc.hasMadeContact = false
         }
