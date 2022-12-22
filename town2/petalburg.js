@@ -105,7 +105,18 @@ const woods1 = {
                     "...du coup je l'espère."
                 ])
             }
-        }
+        },
+        zigzagoon1:{
+            x: 200,
+            y: 550,
+            w: 80,
+            h: 60,
+            speed: 2,
+            sprite: pokemonSprites.zigzagoon,
+            oncontact: (self) => {
+                ouch()
+            } 
+        },
     },
 }
 
@@ -546,14 +557,33 @@ player.y = 500
 
 //function finiTot()
 
-/*function ouch(){
+var barreDeVie=document.getElementById("life")
+var health = 260
+
+function ouch(){
+    player.x = 400
+    player.y = 500
+    barreDeVie.style.width=life+"px"
     keysBlocked = true
     printDialogueBox(gameContainerTown2DialogueContainer, [
         "Eille!! Ca fait mal!!!",
         "Ma vie...",
-        'Vous avez perdu 2 points de vie'
+        'Vous avez perdu quelques points de vie'
     ])
-}*/
+    
+    if (barreDeVie<78){
+        printDialogueBox(gameContainerTown2DialogueContainer, [
+            "Il ne vous reste plus beaucoup de vie.",
+        ]) 
+        }
+    if (barreDeVie == 0){
+        player.x = 600
+        player.y = 600
+        printDialogueBox(gameContainerTown2DialogueContainer, [
+            "vous vous etes reveillez a l'entree de la foret..."
+        ])
+    }
+}
 
 function gameLoop(){
         ctx.clearRect(0,0,canvas.width, canvas.height)
