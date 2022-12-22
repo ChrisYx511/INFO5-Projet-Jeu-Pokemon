@@ -650,7 +650,15 @@ const petalburg4 = {
 loadArea(woods1, canvas)
 player.x = 510
 player.y = 630
-playMusic()
+keysBlocked = true
+printDialogueBox(gameContainerTown2DialogueContainer,[
+    "Proche de Petalburg..."
+], startPetalburgArea)
+function startPetalburgArea() {
+    gameContainerTown2DialogueContainer.innerHTML = ""
+    keysBlocked = false
+    playMusic()
+}
 
 //function finiTot()
 

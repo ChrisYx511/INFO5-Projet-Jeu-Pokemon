@@ -85,12 +85,14 @@ const mauville1 = {
             sprite: characterSprites.shortsBoy,
             oncontact: () => {
                 if (itemInventory.includes("Shorts")) {
+                    sfx.play(sfx.boop)
                     keysBlocked = true
                     printDialogueBox(gameContainerTown1DialogueContainer, [
                         "Omg shorts!"
                     ], loadMauvilleGym1)
                     return null
                 }
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 printDialogueBox(gameContainerTown1DialogueContainer, [
                     "I like shorts, they are comfy and easy to wear!",
@@ -127,17 +129,20 @@ const mauville2 = {
             h: 40,
             oncontact: () => {
                 function storeBike() {
+                    sfx.play(sfx.boop)
                     itemInventory.push("Bike")
                     gameContainerTown1DialogueContainer.innerHTML = ""
                     keysBlocked = false
                 }
                 if (itemInventory.includes("Bike")) {
+                    sfx.play(sfx.boop)
                     keysBlocked = true
                     printDialogueBox(gameContainerTown1DialogueContainer, [
                         "(J'ai déjà volé un vélo, ça devrait suffir...)"
                     ])
                     return null
                 }
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 printDialogueBox(gameContainerTown1DialogueContainer, [
                     "(Des vélos... Je pourrais en voler un!)",
@@ -151,6 +156,7 @@ const mauville2 = {
             w: 130,
             h: 20,
             oncontact: () => {
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 printDialogueBox(gameContainerTown1DialogueContainer, [
                     `"Le Centre intégré universitaire de santé et de services sociaux de l'Est de Hoenn regrette de vous informer que ce centre pokémon est actuellement fermé."`
@@ -241,6 +247,7 @@ const mauville4 = {
             w: 80,
             oncontact: () => {
                 if (!itemInventory.includes("Bike")) {
+                    sfx.play(sfx.boop)
                     keysBlocked = true
                     printDialogueBox(gameContainerTown1DialogueContainer, [
                         "(Je pourrais acheter des shorts ici...)",
@@ -249,12 +256,14 @@ const mauville4 = {
                     return null
                 }
                 if (itemInventory.includes("Bike") && itemInventory.includes("Shorts")) {
+                    sfx.play(sfx.boop)
                     keysBlocked = true
                     printDialogueBox(gameContainerTown1DialogueContainer, [
                         "(Je n'ai plus rien à obtenir du magasin...)"
                     ])
                     return null
                 }
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 printDialogueBox(gameContainerTown1DialogueContainer, [
                     "Le magasin général.",
@@ -529,6 +538,7 @@ const mauvilleGym2 = {
             oncontact: () => {
                 music.stop(music.gymBattle)
                 music.play(music.gymVictory)
+                sfx.play(sfx.boop)
                 keysBlocked = true
                 function exitMauville() {
                     gymBadges.push("Mauville Badge")
