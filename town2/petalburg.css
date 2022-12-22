@@ -1,3 +1,13 @@
 #gameContainerTown2{
     display: inherit
 }
+
+#barreDeVie{
+    width: 400px;
+    height: 40px;
+    background-color: greenyellow;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+}
