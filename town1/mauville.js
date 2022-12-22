@@ -1,8 +1,13 @@
 const canvas=document.querySelector("#gameContainerTown1 canvas")
 const ctx=canvas.getContext("2d")
 const gameContainerTown1DialogueContainer = document.querySelector(".dialogueContainer")
+const healthDisplay = document.getElementById("healthDisplay")
+const playerNameDisplay = document.getElementById("playerName")
+
 canvas.width = 1080
 canvas.height = 720
+
+playerNameDisplay.innerHTML = trainerName
 
 function getCursorPosition(canvas, event) {
     const rect = canvas.getBoundingClientRect()
@@ -298,10 +303,320 @@ const mauvilleGym1 = {
             y: 466,
             w: 135,
             h: 124
+        },
+        {
+            x: 604,
+            y: 464,
+            w: 143,
+            h: 124,
+        },
+        {
+            x:0,
+            y:0,
+            w: 180,
+            h: 720
+        },
+        {
+            x: 187,
+            y: 457,
+            w: 140,
+            h: 260
+        },
+        {
+            x: 395,
+            y: 225,
+            w: 273,
+            h: 85
+        },
+        {
+            x: 878,
+            y: 0,
+            w: 200,
+            h: 720
+        },
+        {
+            x: 743,
+            y: 462,
+            w: 140,
+            h: 250,
+        },
+        {
+            x: 670,
+            y: 149,
+            w: 200,
+            h: 160,
+        }, {
+            x: 190,
+            y: 0,
+            w: 260,
+            h: 108
+        }, 
+        {
+            x: 654,
+            w: 175,
+            y: 20,
+            h: 80,
+            sprite: bgElements.mauvilleGymElectricity
+        },
+        {
+            x:465,
+            w: 135,
+            y:0,
+            h: 20,
+            oncontact: () => {
+                loadArea(mauvilleGym2)
+                player.x = 519
+                player.y = 635
+            }
+
         }
 
     ],
-    npc: {}
+    npc: {
+        flyingZigzagoon1: {
+            x: 300,
+            y: 125,
+            w: 100,
+            h: 85,
+            speedX: 20,
+            sprite: pokemonSprites.zigzagoon,
+            loop: (self) => {
+                self.x += self.speedX
+                for (let i = 0; i < activeArea.layout.length; i++) {
+                    if (collision(self, activeArea.layout[i])) {
+                        self.speedX = -self.speedX
+                    }
+                    if (collision(self, player)) {
+                        player.x = 533
+                        player.y = 485
+                    }
+
+                }
+            }
+        },
+        flyingZigzagoon2: {
+            x: 375,
+            y: 350,
+            w: 100,
+            h: 85,
+            speedX: 8,
+            sprite: pokemonSprites.zigzagoon,
+            loop: (self) => {
+                self.x += self.speedX
+                for (let i = 0; i < activeArea.layout.length; i++) {
+                    if (collision(self, activeArea.layout[i])) {
+                        self.speedX = -self.speedX
+                    }
+                    if (collision(self, player)) {
+                        player.x = 533
+                        player.y = 485
+                    }
+
+                }
+            }
+        },
+        button1: {
+            x: 201,
+            y: 324,
+            w: 35,
+            h: 60,
+            oncontact: (self) => {
+                self.hide = true
+                sfx.play(sfx.boop)
+                activeArea.npc.flyingZigzagoon1.hide = true
+                activeArea.npc.flyingZigzagoon2.hide = true
+                setTimeout(() => {
+                    if (activeArea.areaSectionId != mauvilleGym1.areaSectionId) {
+                        return null
+                    }
+                    
+                    self.hide = false
+                    activeArea.npc.flyingZigzagoon1.hide = false
+                    activeArea.npc.flyingZigzagoon2.hide = false
+                }, 3000)
+            }
+        }
+
+    }
+}
+
+const mauvilleGym2 = {
+    areaName: "Mauville Gym",
+    areaSectionId: 2,
+    bgPath: "../assets/gyms/mauvilleGym2.png",
+    layout: [
+        {
+            x:0,
+            y:0,
+            w: 180,
+            h: 720
+        },
+        {
+            x: 878,
+            y: 0,
+            w: 200,
+            h: 720
+        },
+        {
+            x: 257,
+            y: 562,
+            w: 135,
+            h: 66
+        },
+        {
+            x: 188,
+            y: 543,
+            w: 50,
+            h: 100,
+        },
+        {
+            x: 398,
+            y: 545,
+            w: 60,
+            h: 100,
+        },
+        {
+            x: 190,
+            w: 200,
+            y: 0,
+            h: 436
+        },
+        {
+            x: 673,
+            w: 200,
+            y: 0,
+            h: 376
+        },
+        {
+            x: 391,
+            w: 66,
+            y: 198,
+            h: 235
+        },
+        {
+            x: 608,
+            w: 66,
+            y: 198,
+            h: 235
+        },
+        {
+            x: 608,
+            y: 542,
+            w: 68,
+            h: 100,
+            
+        },
+        {
+            x: 674,
+            y: 692,
+            w: 200,
+            h: 30
+        },
+        {
+            x: 608,
+            y: 452,
+            w: 50,
+            h: 80,
+        },
+        {
+            x: 465,
+            y: 291,
+            w: 130,
+            h: 60
+        },
+        {
+            x: 402,
+            y: 0,
+            w: 256,
+            h: 100
+        }
+    ],
+    npc: {
+        flyingZigzagoon1: {
+            x: 198,
+            y: 459,
+            w: 100,
+            h: 75,
+            speedX: 3,
+            sprite: pokemonSprites.zigzagoon,
+            loop: (self) => {
+                self.x += self.speedX
+                for (let i = 0; i < activeArea.layout.length; i++) {
+                    if (collision(self, activeArea.layout[i])) {
+                        self.speedX = -self.speedX
+                    }
+                    if (collision(self, player)) {
+                        player.x = 533
+                        player.y = 631
+                    }
+
+                }
+            }
+
+        },
+        eonTicket: {
+            x: 310,
+            y:645,
+            w:60,
+            h:60,
+            sprite: itemSprites.eonTicket,
+            oncontact: (self) => {
+                self.hide = true
+                itemInventory.push("Ticket")
+                activeArea.layout[11].sprite = bgElements.mauvilleGymFloorPattern
+                activeArea.layout[11].nocollide = true
+                sfx.play(sfx.boop)
+            }
+        },
+        button1: {
+            x: 406,
+            y:457,
+            w: 50,
+            h: 55,
+            oncontact: (self) => {
+                self.hide = true
+                activeArea.layout[2].sprite = bgElements.mauvilleGymFloorPattern
+                activeArea.layout[2].nocollide = true
+                activeArea.npc.flyingZigzagoon1.hide = true
+                sfx.play(sfx.boop)
+                setTimeout(() => {
+                    if (activeArea.areaSectionId != mauvilleGym2.areaSectionId) {
+                        return null
+                    }
+                    self.hide = false
+                    activeArea.npc.flyingZigzagoon1.hide = false
+                }, 2000)
+            },
+        },
+        button2: {
+            x: 476,
+            y: 659,
+            w: 50,
+            h: 55,
+            oncontact: (self) => {
+                player.speed = 8
+                self.hide = true
+                keysBlocked = true
+                sfx.play(sfx.boop)
+                printDialogueBox(gameContainerTown1DialogueContainer, [
+                    "Vitesse augmentée!"
+                ])
+            }
+        },
+        button3: {
+            x: 753,
+            y: 454,
+            w: 50,
+            h: 55,
+            oncontact: (self) => {
+                self.hide = true
+                sfx.play(sfx.boop)
+                activeArea.layout[12].sprite = bgElements.mauvilleGymFloorPattern
+                activeArea.layout[12].nocollide = true
+            }
+        }
+
+    }
 }
 
 function loadMauvilleGym1() {
@@ -310,12 +625,28 @@ function loadMauvilleGym1() {
     player.y = 525
     player.x = 496
     loadArea(mauvilleGym1)
+    music.stop(music.mauville)
+    music.play(music.gymBattle)
 }
 
 loadArea(mauville1, canvas)
+keysBlocked = true
+printDialogueBox(gameContainerTown1DialogueContainer, [
+    "(Voici Mauville City.)", 
+    "(Le but sera de trouver le gym, combattre le gym leader et obtenir ton premier badge.)"
+], startMauvilleSequence)
+function startMauvilleSequence() {
+    gameContainerTown1DialogueContainer.innerHTML = ""
+    keysBlocked = false
+    music.play(music.mauville)
+}
+
 player.x = 500
 player. y = 500
 function gameLoop(){
+    if (paused) {
+        return null
+    }
     ctx.clearRect(0,0,canvas.width, canvas.height)
     player.handleMovement()
     player.draw()
