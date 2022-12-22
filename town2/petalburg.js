@@ -18,12 +18,14 @@ const woods1 = {
     areaSectionId: 3,
     bgPath: "../assets/wildZones/woods_1.jpg",
     layout: [
+        //creux
         {
             x: 488,
             y: 370,
             w: 290,
             h: 10,
         },
+        // paquet d'arbres à droite
         {
             x: 685,
             y: 640,
@@ -36,25 +38,28 @@ const woods1 = {
             w: 150,
             h: 80,
         },
+        // rangée d'arbres en bas à droite
         {
             x: 785,
             y: 250,
             w: 350,
             h: 160,
         },
+        // rangée d'arbres en bas à gauche
         {
             x: 0,
             y: 640,
             w: 380,
             h: 80,
         },
+        // paquet d'arbres à gauche du creux
         {
             x: 200,
             y: 250,
             w: 290,
             h: 170,
         },
-        // section 2 de la foret
+        // section 2 de la forêt
         {
             x: 980,
             y: 10,
@@ -66,12 +71,12 @@ const woods1 = {
                 player.y = 600
             }
         },
-        //pancarte 1
+        // pancarte
         {
             x: 400,
             y: 450,
-            w: 20,
-            h: 20,
+            w: 30,
+            h: 30,
             oncontact: () => {
                 keysBlocked = true
                 printDialogueBox(gameContainerTown2DialogueContainer, [
@@ -93,11 +98,11 @@ const woods1 = {
                 keysBlocked = true
                 printDialogueBox(gameContainerTown2DialogueContainer, [
                     "Mais que vois-la je!",
-                    "Un jeune garcon qui se promene dans cette foret... si dangereuse...",
+                    "Un jeune garcon qui se promène dans cette forêt... si dangereuse.",
                     "Je te conseillerais de ne pas t'approcher des zigzagoons...",
-                    "...ils sont beaacoup plus aggressifs que vous ne le pensez.",
-                    "Ne perdez pas d'espoir! Je suis sure que tu vas survivre...",
-                    "...du coup je l'espere."
+                    "...ils sont beaucoup plus aggressifs que tu ne le penses.",
+                    "Ne perdez pas d'espoir! Je suis sûre que tu vas survivre...",
+                    "...du coup je l'espère."
                 ])
             }
         }
@@ -109,12 +114,14 @@ const woods2 = {
     areaSectionId: 3,
     bgPath: "../assets/wildZones/woods_2.jpg",
     layout:[
+        //paquet d'arbres en bas
         {
             x: 300,
             y: 550,
             w: 600,
             h: 160,
         },
+        //série d'arbres à droite
         {
             x: 1030,
             y: 315,
@@ -127,19 +134,22 @@ const woods2 = {
             w: 600,
             h: 110,
         },
+        //creux
         {
             x: 175,
             y: 180,
             w: 250,
             h: 10,
         },
+        //arbres en haut à gauche
         {
             x: 0,
             y: 100,
             w: 150,
             h: 160,
         },
-        // retourner a la section 1 de la foret
+    
+        // retourner à la section 1 de la forêt
         {
             x: 910,
             y: 715,
@@ -151,7 +161,7 @@ const woods2 = {
                 player.y = 65
             }  
         },
-        // retourner a la section 1 de la foret (piege)
+        // retourner à la section 1 de la forêt (piège)
         {
             x: 50,
             y: 700,
@@ -163,7 +173,7 @@ const woods2 = {
                 player.y = 70
             }  
         },
-        // aller vers la section 3 de la foret
+        // aller vers la section 3 de la forêt
         {
             x: 0,
             y: 340,
@@ -180,14 +190,14 @@ const woods2 = {
         npc: {
             fermier:{
                 x: 260,
-                y: 130,
+                y: 110,
                 w: 70,
                 h: 90,
                 sprite: characterSprites.oldMan,
                 oncontact: () => {
                         keysBlocked = true
                         printDialogueBox(gameContainerTown2DialogueContainer, [
-                            "Tu veux aller a Petalburg?",
+                            "Tu veux aller à Petalburg?",
                             "Prenez le chemin vers le bas. Trust.",
                         ])
                 }
@@ -200,6 +210,7 @@ const woods3 = {
     areaSectionId: 3,
     bgPath: "../assets/wildZones/woods_3.jpg",
     layout:[
+        // arbres à gauche
         {
             x: 300,
             y: 510,
@@ -212,13 +223,16 @@ const woods3 = {
             w: 570,
             h: 140,
         },
+        // arbres en haut à droite
         {
             x: 225,
             y: 0,
             w: 40,
             h: 200,
         },
-        // retourner a la section 2 de la foret
+    
+
+        // retourner à la section 2 de la forêt
         {
             x: 910,
             y: 715,
@@ -230,7 +244,7 @@ const woods3 = {
                 player.y = 410
             }  
         },
-        // aller vers la section 4 de la foret
+        // aller vers la section 4 de la forêt
         {
             x: 310,
             y: 0,
@@ -242,8 +256,6 @@ const woods3 = {
                 player.y = 585
             } 
         },
-       
-
     ],
     npc: {}
 }
@@ -253,13 +265,50 @@ const woods4 = {
     areaSectionId: 3,
     bgPath: "../assets/wildZones/woods_4.jpg",
     layout: [
+        // arbres à gauche
         {
-            x: 488,
-            y: 370,
-            w: 290,
-            h: 10,
+            x: 0,
+            y: 200,
+            w: 90,
+            h: 500,
         },
-        // retourner a la section 3 de la foret
+        {
+            x: 0,
+            y: 0,
+            w: 620,
+            h: 290,
+        },
+        // 3 arbres en bas
+        {
+            x: 410,
+            y: 620,
+            w: 300,
+            h: 70,
+        },
+        // arbres avant de sortir des bois
+        {
+            x: 410,
+            y: 620,
+            w: 300,
+            h: 70,
+        },
+
+        // pancarte
+        {
+            x: 580,
+            y: 370,
+            w: 30,
+            h: 30,
+            oncontact: () => {
+                keysBlocked = true
+                printDialogueBox(gameContainerTown2DialogueContainer, [
+                    "Vous y êtes presque!",
+                    "Il y aura de la nourriture pour vous soigner dans la ville.",
+                    '"Note: les fermiers sont suspicieux vous ne trouvez pas?"'
+                ])
+        }
+        },
+        // retourner à la section 3 de la forêt
         {
             x: 130,
             y: 700,
@@ -284,7 +333,25 @@ const woods4 = {
             } 
         }
     ],
-    npc:{}
+    npc:{
+        trainer:{
+            x: 915,
+            y: 230,
+            w: 70,
+            h: 90,
+            sprite: characterSprites.oldMan,
+            oncontact: () => {
+                    keysBlocked = true
+                    printDialogueBox(gameContainerTown2DialogueContainer, [
+                        "Salut!",
+                        "Mais qu'est-ce que-",
+                        "Vous avez survecu a traverser la foret sans pokemon!?",
+                        "Je vous dois mon respect en tant que jeune amateur. Tenez.",
+                        'Vous avez obtenu 100$'
+                    ])
+            }
+        }
+    }
 }
 
 const petalburg1 = {
@@ -320,11 +387,26 @@ const petalburg2 = {
     areaSectionId: 4,
     bgPath: "../assets/towns/petalburgCity_2.jpg",
     layout: [
+        // maison
+        {
+            x: 222,
+            y: 160,
+            w: 280,
+            h: 220,
+        },
+        // colone d'arbres
+        {
+            x: 50,
+            y: 5,
+            w: 170,
+            h: 430,
+        },
+        // rivière
         {
             x: 0,
-            y: 0,
-            w: 290,
-            h: 10,
+            y: 480,
+            w: 60,
+            h: 200,
         },
         // retourner vers Petalburg1
         {
@@ -371,12 +453,49 @@ const petalburg3 = {
     areaSectionId: 4,
     bgPath: "../assets/towns/petalburgCity_4.jpg",
     layout: [
+        //colone d'arbres à gauche
         {
             x: 0,
-            y: 700,
-            w: 290,
-            h: 10,
+            y: 290,
+            w: 70,
+            h: 440,
         },
+         // rangée d'arbres
+        {
+            x: 70,
+            y: 600,
+            w: 900,
+            h: 70,
+        },
+        // colone d'arbres à droite
+        {
+            x: 980,
+            y: 200,
+            w: 80,
+            h: 600,
+        },
+        // pots de fleurs
+        {
+            x: 810,
+            y: 150,
+            w: 150,
+            h: 100,
+        },
+        // maison
+        {
+            x: 500,
+            y: 240,
+            w: 280,
+            h: 80,
+        },
+        // colone de buisson à l'entrée
+        {
+            x: 405,
+            y: 40,
+            w: 50,
+            h: 220,
+        },
+
         // retourner vers Petalburg2
         {
             x: 170,
@@ -424,6 +543,17 @@ const petalburg4 = {
 loadArea(woods1, canvas)
 player.x = 500
 player.y = 500
+
+//function finiTot()
+
+/*function ouch(){
+    keysBlocked = true
+    printDialogueBox(gameContainerTown2DialogueContainer, [
+        "Eille!! Ca fait mal!!!",
+        "Ma vie...",
+        'Vous avez perdu 2 points de vie'
+    ])
+}*/
 
 function gameLoop(){
         ctx.clearRect(0,0,canvas.width, canvas.height)
