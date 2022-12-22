@@ -3,11 +3,11 @@ const ctx=canvas.getContext("2d")
 const gameContainerTown1DialogueContainer = document.querySelector(".dialogueContainer")
 const healthDisplay = document.getElementById("healthDisplay")
 const playerNameDisplay = document.getElementById("playerName")
+const healthBar = document.getElementById("hpBar")
+const healthNumber = document.getElementById("healthNumber")
 
 canvas.width = 1080
 canvas.height = 720
-
-playerNameDisplay.innerHTML = trainerName
 
 function getCursorPosition(canvas, event) {
     const rect = canvas.getBoundingClientRect()
@@ -288,17 +288,6 @@ const mauvilleGym1 = {
     bgPath: "../assets/gyms/mauvilleGym1.png",
     layout: [
         {
-            x: 466,
-            y: 668,
-            w: 133,
-            h: 20,
-            oncontact: () => {
-                loadArea(mauville1)
-                player.x = 419
-                player.y = 519
-            }
-        },
-        {
             x: 320,
             y: 466,
             w: 135,
@@ -364,6 +353,7 @@ const mauvilleGym1 = {
             y:0,
             h: 20,
             oncontact: () => {
+                keysDown = {}
                 loadArea(mauvilleGym2)
                 player.x = 519
                 player.y = 635
@@ -389,6 +379,7 @@ const mauvilleGym1 = {
                     if (collision(self, player)) {
                         player.x = 533
                         player.y = 485
+                        player.health -= 1
                     }
 
                 }
@@ -410,6 +401,7 @@ const mauvilleGym1 = {
                     if (collision(self, player)) {
                         player.x = 533
                         player.y = 485
+                        player.health -= 1
                     }
 
                 }
@@ -528,7 +520,20 @@ const mauvilleGym2 = {
             x: 402,
             y: 0,
             w: 256,
-            h: 100
+            h: 100,
+            nocollide: true,
+            oncontact: () => {
+                keysBlocked = true
+                function exitMauville() {
+                    gymBadges.push("Mauville Badge")
+                    saveGame()
+                    location.href = "../town2/petalburg.html"
+                }
+                printDialogueBox(gameContainerTown1DialogueContainer, [
+                    "Oof! Il n'y avais pas plus de choses à voir ici après tout.",
+                    "OBTENU 1x Badge du Gym de Mauville",
+                ], exitMauville)
+            }
         }
     ],
     npc: {
@@ -548,6 +553,7 @@ const mauvilleGym2 = {
                     if (collision(self, player)) {
                         player.x = 533
                         player.y = 631
+                        player.health -= 1
                     }
 
                 }
@@ -621,10 +627,14 @@ const mauvilleGym2 = {
 
 function loadMauvilleGym1() {
     gameContainerTown1DialogueContainer.innerHTML = ""
-    keysBlocked = false
     player.y = 525
     player.x = 496
     loadArea(mauvilleGym1)
+    printDialogueBox(gameContainerTown1DialogueContainer, [
+        "Oh non! Il y a des Zigazagoon sauvages dans le gym.",
+        "Il faudrait les éviter...",
+        "(Les bouttons peuvent donner des effets.)"
+    ])
     music.stop(music.mauville)
     music.play(music.gymBattle)
 }
@@ -643,6 +653,16 @@ function startMauvilleSequence() {
 
 player.x = 500
 player. y = 500
+
+saveGame()
+function checkPlayerHealth() {
+    if (player.health == 0) {
+        paused = true
+        return null
+    }
+    healthBar.style.width = String(player.health*26) + "px"
+    healthNumber.innerHTML = `${player.health}/10`
+}
 function gameLoop(){
     if (paused) {
         return null
@@ -651,6 +671,9 @@ function gameLoop(){
     player.handleMovement()
     player.draw()
     drawAreaObjects()
+    checkPlayerHealth()
+    playerNameDisplay.innerHTML = trainerName
+
     requestAnimationFrame(gameLoop)
 }
 gameLoop()
