@@ -21,7 +21,7 @@
     </div>
     <div class="gameContainer" id="gameContainerSecondaryMenu">
         <div id="secondaryMenuButtons">
-            <button id="continueButton">Continuer<br><br>
+            <button id="continueButton" onclick="continueGame()">Continuer<br><br>
                 <div id="continueButtonSaveInfo">
                 JOUEUR &emsp; &emsp; &emsp;
                 TEMPS &emsp; <br>
@@ -33,10 +33,21 @@
         </div>
 
     </div>
-    <div class="gameContainer" id="gameContainerMainCanvas">
-        <canvas id="mainCanvas"></canvas>
+    <div class="gameContainer" id="gameContainerOptionsMenu">
+        <div id="optionItems">
+            <h2>Volume de la musique</h2>
+            <input type="range" name="musicSlider" id="musicSlider">
+            <br>
+            <h2>Volume des effets sonores</h2>
+            <input type="range" name="sfxSlider" id="sfxSlider">
+            <br>
+            <button onclick="backToSecondaryMenu()">Confirmer</button>
+        </div>
+
     </div>
     <div class="gameContainer" id="gameContainerBirchMoment">
+        <div id="birchSprite">
+        </div>
         <div class="dialogueContainer"></div>
     </div>
 
@@ -45,10 +56,10 @@
             <!-- JS Will fill here w/ image--></div>
         <div class="dialogueContainer">
             <div class="dialogueBox">
-                <p>Select your gender:</p>
+                <p>Es-tu un garçon ou une fille?</p>
                 <div class="introductionForms" id="genderChoice">
-                    <button onmouseover='document.querySelector("#characterChoiceSprite").innerHTML = `<img src="./assets/characterSprites/birch.PNG">`' onclick="startNameChoice('boy')">Boy</button>
-                    <button onmouseover='document.querySelector("#characterChoiceSprite").innerHTML = `<img src="./assets/pokemon/blaziken.png">`' onclick="startNameChoice('girl')">Girl</button>
+                    <button onmouseover='document.querySelector("#characterChoiceSprite").innerHTML = `<img src="./assets/characterSprites/mcBoyCharacterSelect.PNG">`' onclick="startNameChoice('boy')">Garçon</button>
+                    <button onmouseover='document.querySelector("#characterChoiceSprite").innerHTML = `<img src="./assets/characterSprites/mcGirlCharacterSelect.png">`' onclick="startNameChoice('girl')">Fille</button>
                 </div>
 
                 <div class="introductionForms" id="nameChoice">
@@ -94,8 +105,6 @@
     
 </body>
 <script src="./js/assets.js"></script>
-<script src="./js/pokemonDB.js"></script>
 <script src="./js/main.js"></script>
 <script src="./js/menu.js"></script>
-<script src="./town2/petalburg.js"></script>
 </html>

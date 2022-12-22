@@ -58,7 +58,7 @@
     position: absolute;
     width: 540px;
     height: 470px;
-    bottom: 250px;
+    bottom: 200px;
     left: 0;
     right: 0;
     margin: auto;
@@ -72,4 +72,33 @@
 
 #nameChoice {
     display: none;
+}
+
+#gameContainerOptionsMenu {
+    background-color: #8C94FF;
+    text-align: center;
+}
+
+#optionItems {
+    background-color: white;
+    border: 4px orange solid;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 10px;
+}
+
+#birchSprite {
+    position: absolute;
+    width: 540px;
+    height: 470px;
+    bottom: 200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+#birchSprite img {
+    object-fit: contain;
+    width: 540px;
+    height: 420px;
 }

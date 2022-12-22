@@ -1,3 +1,5 @@
+// INUTILISÉ - JUSTE POUR RÉFÉRENCE
+
 function Treecko() {
     this.name = "Treecko"
     this.hp = 40

@@ -1,3 +1,4 @@
+const gameContainerTown1 = document.getElementById("gameContainerTown1")
 const canvas=document.querySelector("#gameContainerTown1 canvas")
 const ctx=canvas.getContext("2d")
 const gameContainerTown1DialogueContainer = document.querySelector(".dialogueContainer")
@@ -5,6 +6,7 @@ const healthDisplay = document.getElementById("healthDisplay")
 const playerNameDisplay = document.getElementById("playerName")
 const healthBar = document.getElementById("hpBar")
 const healthNumber = document.getElementById("healthNumber")
+const gameContainerGameOver = document.getElementById("gameContainerGameOver")
 
 canvas.width = 1080
 canvas.height = 720
@@ -377,8 +379,9 @@ const mauvilleGym1 = {
                         self.speedX = -self.speedX
                     }
                     if (collision(self, player)) {
-                        player.x = 533
-                        player.y = 485
+                        sfx.play(sfx.fwoop)
+                        player.x = 488
+                        player.y = 641
                         player.health -= 1
                     }
 
@@ -399,8 +402,9 @@ const mauvilleGym1 = {
                         self.speedX = -self.speedX
                     }
                     if (collision(self, player)) {
-                        player.x = 533
-                        player.y = 485
+                        player.x = 488
+                        player.y = 641
+                        sfx.play(sfx.fwoop)
                         player.health -= 1
                     }
 
@@ -523,6 +527,8 @@ const mauvilleGym2 = {
             h: 100,
             nocollide: true,
             oncontact: () => {
+                music.stop(music.gymBattle)
+                music.play(music.gymVictory)
                 keysBlocked = true
                 function exitMauville() {
                     gymBadges.push("Mauville Badge")
@@ -551,8 +557,9 @@ const mauvilleGym2 = {
                         self.speedX = -self.speedX
                     }
                     if (collision(self, player)) {
-                        player.x = 533
-                        player.y = 631
+                        player.x = 537
+                        player.y = 628
+                        sfx.play(sfx.fwoop)
                         player.health -= 1
                     }
 
@@ -638,6 +645,7 @@ function loadMauvilleGym1() {
     music.stop(music.mauville)
     music.play(music.gymBattle)
 }
+fullGameLoad()
 
 loadArea(mauville1, canvas)
 keysBlocked = true
@@ -650,18 +658,38 @@ function startMauvilleSequence() {
     keysBlocked = false
     music.play(music.mauville)
 }
-
-player.x = 500
-player. y = 500
-
+player.x = 932
+player. y = 14
 saveGame()
 function checkPlayerHealth() {
     if (player.health == 0) {
         paused = true
+        gameContainerTown1.style.display = "none"
+        gameContainerGameOver.style.display = "inherit"
+        music.stop(music.gymBattle)
         return null
     }
     healthBar.style.width = String(player.health*26) + "px"
     healthNumber.innerHTML = `${player.health}/10`
+}
+
+function restartArea() {
+    sfx.play(sfx.pokemonHealed)
+    gameContainerTown1.style.display = "inherit"
+    gameContainerGameOver.style.display = "none"
+    loadArea(mauville2)
+    sfx.pokemonHealed.addEventListener("ended", () => {
+        music.play(music.mauville)
+    })
+    player.health = 10
+    paused = false
+    gameLoop()
+    player.x = 261
+    player. y = 493
+}
+
+function exitGame() {
+    location.href = "../index.html"
 }
 function gameLoop(){
     if (paused) {

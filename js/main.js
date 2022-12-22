@@ -7,6 +7,7 @@ Collège Jean-Eudes - Xi Yang, Felix Wu
 //HEADER
 const dialogueBoxTemplate = document.getElementById("dialogueBoxTemplate")
 let musicVolume = 0.5
+let sfxVolume = 0.5
 let trainerName
 let trainerGender
 let pokemonInventory = []
@@ -122,6 +123,9 @@ function saveGame() {
     localStorage.setItem('pokemonInventory', JSON.stringify(pokemonInventory))
     localStorage.setItem('pokemonPC', JSON.stringify(pokemonPC))
     localStorage.setItem('gymBadges', JSON.stringify(gymBadges))
+    localStorage.setItem('musicVolume', JSON.stringify(musicVolume))
+    localStorage.setItem('sfxVolume', JSON.stringify(sfxVolume))
+
     locationInGame.mapX = player.x
     locationInGame.mapY = player.y
     localStorage.setItem('locationInGame', JSON.stringify(locationInGame))
@@ -167,7 +171,14 @@ function fullGameLoad() {
         gymBadges = JSON.parse(localStorage.getItem('gymBadges'))
         locationInGame = JSON.parse(localStorage.getItem('locationInGame'))
         loadedPlayTimeInMilliseconds = JSON.parse(localStorage.getItem('playtime'))
-
+        musicVolume = JSON.parse(localStorage.getItem('musicVolume'))
+        sfxVolume = JSON.parse(localStorage.getItem('sfxVolume'))
+        if (!musicVolume) {
+            musicVolume = 0.5
+        }
+        if (!sfxVolume) {
+            sfxVolume = 0.5
+        }
         player.x = locationInGame.mapX
         player.y = locationInGame.mapY
         return "SUCCESS"

@@ -13,22 +13,23 @@ const music = {
     introductions: new Audio("../assets/music/04 - Introductions.ogg"),
     wildPokemon: new Audio("../assets/music/09 - Battle! (Wild Pokémon).ogg"),
     gymBattle: new Audio("../assets/music/50 - Battle! (Gym Leader).ogg"),
-    mauville: new Audio("../assets/music/27 - Rustboro City.ogg"),
-    petalburg: new Audio("../assets/music/27 - Rustboro City.ogg")
+    mauville: new Audio("../assets/music/20 - Petalburg City.ogg"),
+    petalburg: new Audio("../assets/music/27 - Rustboro City.ogg"),
+    gymVictory: new Audio("../assets/music/51 - Victory! (Gym Leader).ogg")
 }
 
 const characterSprites = {
-    mcBoy: getImage("../assets/characterSprites/mc.jpg"),
+    mcBoy: getImage("../assets/characterSprites/mc.png"),
     oldMan: getImage("../assets/characterSprites/oldMan.jpg"),
     blaziken: getImage("../assets/pokemon/blaziken.png"),
     shortsBoy: getImage("../assets/characterSprites/shortsGuy.png"),
+    birch: getImage("../assets/characterSprites/birch.PNG")
     trainer: getImage("../assets/characterSprites/trainer.PNG"),
     farmer: getImage("../assets/characterSprites/farmer.PNG"),
     nurse: getImage("../assets/characterSprites/nurse.PNG"),
     scientific: getImage("../assets/characterSprites/scientific.PNG"),
     baldGuy: getImage("../assets/characterSprites/baldGuy.PNG"),
     bigDude: getImage("../assets/characterSprites/bigDude.PNG"),
-    
 }
 
 const pokemonSprites = {
@@ -47,13 +48,15 @@ const itemSprites = {
 const sfx = {
     play: (trackReference) => {
         trackReference.play()
-        trackReference.volume = musicVolume
+        trackReference.volume = sfxVolume
         trackReference.addEventListener("ended", () => {
             trackReference.pause()
             trackReference.currentTime = 0
         })
     },
-    boop: new Audio("../assets/boop.wav")
+    boop: new Audio("../assets/sfx/boop.wav"),
+    fwoop: new Audio("../assets/sfx/fwoop.wav"),
+    pokemonHealed: new Audio("../assets/music/14 - Pokémon Healed.ogg")
 }
 /**
  * Return an HTML image from a src string
