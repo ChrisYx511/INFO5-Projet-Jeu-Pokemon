@@ -1,3 +1,5 @@
+// INUTILISÉ - JUSTE POUR RÉFÉRENCE
+
 //Grovyle and Sceptile
 const gigaDrain = {
     name: "Giga Drain",
